@@ -1,4 +1,8 @@
-# Field Attribution and Selective Abstention for Root-Cause Triage of Bug Reports
+# Evidence-Grounded, Calibrated, Selective Root-Cause Triage of Bug Reports
+
+## How to reproduce
+
+Setup and reproduction steps will be documented after the dataset has been verified.
 
 # Overview
 
@@ -57,6 +61,6 @@ The project is organized around four research questions:
 **CSI 5187 – Software Engineering Research Project**
 
 
-Vineela Pulagam - 300493522
-Nidhi Jani - 300518170 
-Swarna Susmitha Modugu - 300561282 
+- Vineela (300493522)
+- Swarna  (300561282) 
+- Nidhi   (300518170) 
