@@ -1,0 +1,337 @@
+url,silver_label,silver_conf,commit_message,changed_paths,changed_methods,my_label
+https://github.com/apache/pulsar/issues/4707,concurrency,1.0,"Fix：PulsarKafkaProducer is not thread safe (#4745)
+
+fix #4707 
+
+ Fix：PulsarKafkaProducer is not thread safe (#4745)
+
+fix #4707
+
+(cherry picked from commit 0362944f6f7d610dd5b54d3724958e0bb9cb7abc)
+",pulsar-client-kafka-compat/pulsar-client-kafka/src/main/java/org/apache/kafka/clients/producer/PulsarKafkaProducer.java tests/pulsar-kafka-compat-client-test/src/test/java/org/apache/pulsar/tests/integration/compat/kafka/PulsarKafkaProducerThreadSafeTest.java PulsarKafkaProducer.java PulsarKafkaProd,org.apache.kafka.clients.producer.PulsarKafkaProducer.createNewProducer(java.lang.String) org.apache.pulsar.tests.integration.compat.kafka.PulsarKafkaProducerThreadSafeTest org.apache.kafka.clients.producer.PulsarKafkaProducer.createNewProducer(java.lang.String) org.apache.pulsar.tests.integration.c,
+https://github.com/apache/incubator-dolphinscheduler/issues/731,concurrency,1.0,"[BUG][#731]repair swagger annotation，interface path:/escheduler/projects/{projectName}/process/batch-delete and /escheduler/projects/{projectName}/process/delete  (#764)
+
+* 增加工作流导出导入功能，前端定时器表达式的秒和分钟的默认值从*修改成0
+
+* 修改工作流导出导入功能由excel改为json减少依赖
+
+* [BUG][#731]repair swagger annotation ,interface path:",dockerfile/conf/escheduler/conf/i18n/messages.properties dockerfile/conf/escheduler/conf/i18n/messages_en_US.properties dockerfile/conf/escheduler/conf/i18n/messages_zh_CN.properties escheduler-api/src/main/java/cn/escheduler/api/controller/ProcessDefinitionController.java escheduler-api/src/main/ja,"cn.escheduler.api.controller.ProcessDefinitionController.queryProccessDefinitionAllByProjectId(cn.escheduler.dao.model.User,java.lang.Integer) cn.escheduler.api.controller.ProcessDefinitionController.deleteProcessDefinitionById(cn.escheduler.dao.model.User,java.lang.String,java.lang.Integer) cn.esch",
+https://github.com/apache/incubator-dolphinscheduler/issues/771,concurrency,1.0,"[BUG][#731]repair swagger annotation，interface path:/escheduler/projects/{projectName}/process/batch-delete and /escheduler/projects/{projectName}/process/delete  (#764)
+
+* 增加工作流导出导入功能，前端定时器表达式的秒和分钟的默认值从*修改成0
+
+* 修改工作流导出导入功能由excel改为json减少依赖
+
+* [BUG][#731]repair swagger annotation ,interface path:",dockerfile/conf/escheduler/conf/i18n/messages.properties dockerfile/conf/escheduler/conf/i18n/messages_en_US.properties dockerfile/conf/escheduler/conf/i18n/messages_zh_CN.properties escheduler-api/src/main/java/cn/escheduler/api/controller/ProcessDefinitionController.java escheduler-api/src/main/ja,"cn.escheduler.api.controller.ProcessDefinitionController.queryProccessDefinitionAllByProjectId(cn.escheduler.dao.model.User,java.lang.Integer) cn.escheduler.api.controller.ProcessDefinitionController.deleteProcessDefinitionById(cn.escheduler.dao.model.User,java.lang.String,java.lang.Integer) cn.esch",
+https://github.com/apache/bookkeeper/issues/1229,memory,1.0,"ISSUE #1229: PendingAddOp can get recycled before it gets executed
+
+Descriptions of the changes in this PR:
+*Problem*
+
+The PendingAddOp can be recycled when it is cancelled before it is executed. so it will hit NPE when it is actually executed. This is a bug introduced by #1091
+
+*Solution*
+
+Only rec",bookkeeper-server/src/main/java/org/apache/bookkeeper/client/BookKeeper.java bookkeeper-server/src/main/java/org/apache/bookkeeper/client/PendingAddOp.java bookkeeper-server/src/test/java/org/apache/bookkeeper/client/PendingAddOpTest.java bookkeeper-server/src/main/java/org/apache/bookkeeper/client/,"org.apache.bookkeeper.client.LedgerHandle.getBk() org.apache.bookkeeper.client.PendingAddOp.maybeRecycle() org.apache.bookkeeper.client.PendingAddOp.create(org.apache.bookkeeper.client.LedgerHandle,io.netty.buffer.ByteBuf,org.apache.bookkeeper.client.AsyncCallback.AddCallbackWithLatency,java.lang.Ob",
+https://github.com/apache/bookkeeper/issues/596,concurrency,1.0,"ISSUE #596 ISSUE #583: Auto replication should honor ensemble placement policy
+
+Descriptions of the changes in this PR:
+
+This pull request ports the changes from [twitter/bookkeeperfc7e171](https://github.com/twitter/bookkeeper/commit/fc7e171135a58cddb9e91f5f614b3ceb6f9f9fee)
+
+The changes include:
+
+",bookkeeper-server/src/main/java/org/apache/bookkeeper/client/LedgerFragment.java bookkeeper-server/conf/log4j.shell.properties bookkeeper-server/src/main/java/org/apache/bookkeeper/replication/ReplicationWorker.java bookkeeper-server/src/test/java/org/apache/bookkeeper/replication/BookieAutoRecovery,,
+https://github.com/apache/incubator-dolphinscheduler/issues/909,concurrency,1.0,"Repair bug #901，#909，#935 (#952)
+
+* package
+
+* 修改工作流实例页面状态为运行时，禁止删除，删除package.json包里面的babel-runtime和jasmine-core
+
+* bugfix-user-specified queue takes precedence over tenant queue (#769)
+
+Solve the problem that the user queue setting does not take effect
+
+* update markdown docs which can not ",escheduler-ui/src/js/conf/home/pages/dag/_source/formModel/tasks/sql.vue escheduler-ui/src/js/conf/home/pages/datasource/pages/list/_source/createDataSource.vue escheduler-ui/src/js/conf/home/pages/datasource/pages/list/_source/list.vue escheduler-ui/src/js/conf/home/pages/monitor/pages/servers/_sou,,
+https://github.com/apache/incubator-dolphinscheduler/issues/2860,memory,1.0,"fix #2860:copy files and create empty directory (#2876)
+
+* copy resources need get top directory first
+
+* copy resources need get top directory first
+
+* fix #2860:copy files and create empty directory fix #2860:copy files and create empty directory (#2876)
+
+* copy resources need get top director",dolphinscheduler-api/src/main/java/org/apache/dolphinscheduler/api/service/UsersService.java UsersService.java dolphinscheduler-api/src/main/java/org/apache/dolphinscheduler/api/service/UsersService.java UsersService.java dolphinscheduler-api/src/main/java/org/apache/dolphinscheduler/api/service/Res,"org.apache.dolphinscheduler.api.service.UsersService.updateUser(int,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,java.lang.String) org.apache.dolphinscheduler.api.service.UsersService.copyResourceFiles(org.apache.dolphinscheduler.api.dto.resources.ResourceComponent,java.la",
+https://github.com/apache/bookkeeper/issues/716,memory,1.0,"ISSUE #716: PendingAddOp accesses a released ByteBuf
+
+Descriptions of the changes in this PR:
+
+- release `toSend` bytebuf only when a PendingAddOp is recycled.
+- fix MockBookKeeperTestCase to run callbacks in the same executor thread.
+
+Author: Sijie Guo <sijie@apache.org>
+
+Reviewers: Enrico Olivelli",bookkeeper-server/src/main/java/org/apache/bookkeeper/client/PendingAddOp.java bookkeeper-server/src/test/java/org/apache/bookkeeper/client/MockBookKeeperTestCase.java MockBookKeeperTestCase.java PendingAddOp.java bookkeeper-server/src/main/java/org/apache/bookkeeper/client/PendingAddOp.java bookkee,org.apache.bookkeeper.client.MockBookKeeperTestCase.setupWriteLedgerMetadata() org.apache.bookkeeper.client.MockBookKeeperTestCase.setupCreateLedgerMetadata() org.apache.bookkeeper.client.MockBookKeeperTestCase.setupWriteLedgerMetadata().7.answer(org.mockito.invocation.InvocationOnMock) org.apache.b,
+https://github.com/apache/incubator-dolphinscheduler/issues/2788,memory,1.0,"fixed #2788  resolve the bug #2788  (#2789)
+
+* Modify the ambari-plugin readme for packing RPM packages and add a description of the replication plug-in directory
+
+* fixed #2788  fixed #2788  resolve the bug #2788  (#2789)
+
+* Modify the ambari-plugin readme for packing RPM packages and add a descr",dolphinscheduler-dist/pom.xml dolphinscheduler-dist/pom.xml .github/workflows/ci_e2e.yml .github/workflows/ci_ut.yml LICENSE NOTICE README.md README_zh_CN.md ambari_plugin/README.md ambari_plugin/common-services/DOLPHIN/1.3.0/alerts.json ambari_plugin/common-services/DOLPHIN/1.3.0/configuration/dolp,,
+https://github.com/apache/druid/issues/9286,concurrency,1.0,"Use ExecutorService instead of ScheduledExecutorService where necessary (#9325)
+
+* Use ExecutorService instead of ScheduledExecutorService where necessary - #9286
+
+* Added inspection rule to prohibit ScheduledExecutorService assignment to ExecutorService
+",sql/src/main/java/org/apache/druid/sql/calcite/schema/DruidSchema.java .idea/inspectionProfiles/Druid.xml extensions-core/druid-basic-security/src/main/java/org/apache/druid/security/basic/CommonCacheNotifier.java CommonCacheNotifier.java DruidSchema.java,org.apache.druid.security.basic.CommonCacheNotifier org.apache.druid.sql.calcite.schema.DruidSchema,
+https://github.com/apache/bookkeeper/issues/1241,memory,1.0,"Issue #1241: Fixed NPE in PerChannelBookieClient
+
+The `CompletionValue` object from the map can be null in some cases and we need to protect for it.
+
+Fixes #1241
+
+Author: Matteo Merli <mmerli@apache.org>
+
+Reviewers: Sijie Guo <sijie@apache.org>
+
+This closes #1242 from merlimat/fix-npe, closes #1241
+",bookkeeper-server/src/main/java/org/apache/bookkeeper/proto/PerChannelBookieClient.java PerChannelBookieClient.java,"org.apache.bookkeeper.proto.PerChannelBookieClient.initTLSHandshake().7.operationComplete(io.netty.util.concurrent.Future) org.apache.bookkeeper.proto.PerChannelBookieClient.writeAndFlush(io.netty.channel.Channel,org.apache.bookkeeper.proto.PerChannelBookieClient$CompletionKey,java.lang.Object).5.op",
+https://github.com/apache/druid/issues/4937,concurrency,1.0,"Fix dictionary ID race condition in IncrementalIndexStorageAdapter (#6340)
+
+Possibly related to https://github.com/apache/incubator-druid/issues/4937
+
+--------
+
+There is currently a race condition in IncrementalIndexStorageAdapter that can lead to exceptions like the following, when running quer",processing/src/main/java/org/apache/druid/segment/incremental/IncrementalIndexStorageAdapter.java processing/src/test/java/org/apache/druid/segment/incremental/IncrementalIndexStorageAdapterTest.java IncrementalIndexStorageAdapter.java IncrementalIndexStorageAdapterTest.java,org.apache.druid.segment.incremental.IncrementalIndexStorageAdapter.IncrementalIndexCursor org.apache.druid.segment.incremental.IncrementalIndexStorageAdapterTest.testCursorDictionaryRaceConditionFix() org.apache.druid.segment.incremental.IncrementalIndexStorageAdapterTest.DictionaryRaceTestFilter,
+https://github.com/apache/incubator-dolphinscheduler/issues/901,concurrency,1.0,"Repair bug #901，#909，#935 (#952)
+
+* package
+
+* 修改工作流实例页面状态为运行时，禁止删除，删除package.json包里面的babel-runtime和jasmine-core
+
+* bugfix-user-specified queue takes precedence over tenant queue (#769)
+
+Solve the problem that the user queue setting does not take effect
+
+* update markdown docs which can not ",escheduler-ui/src/js/conf/home/pages/dag/_source/formModel/tasks/sql.vue escheduler-ui/src/js/conf/home/pages/datasource/pages/list/_source/createDataSource.vue escheduler-ui/src/js/conf/home/pages/datasource/pages/list/_source/list.vue escheduler-ui/src/js/conf/home/pages/monitor/pages/servers/_sou,,
+https://github.com/apache/druid/issues/5656,memory,1.0,"Fix Kafka Indexing task pause forever if no events in taskDuration (#5656) (#5899) (#5971)
+
+* Fix Kafka Indexing task pause forever (#5656)
+
+* Fix Nullpointer Exception in overlord if taskGroups does not contain the groupId
+* If the endOffset is same as startOffset, still let the task resume inst",extensions-core/kafka-indexing-service/src/test/java/io/druid/indexing/kafka/supervisor/KafkaSupervisorTest.java extensions-core/kafka-indexing-service/src/main/java/io/druid/indexing/kafka/supervisor/KafkaSupervisor.java KafkaSupervisorTest.java KafkaSupervisor.java extensions-core/kafka-indexing-s,"io.druid.indexing.kafka.supervisor.KafkaSupervisorTest.testNoDataIngestionTasks() io.druid.indexing.kafka.supervisor.KafkaSupervisor.checkpointTaskGroup(int,boolean).8.apply(java.util.List) io.druid.indexing.kafka.supervisor.KafkaSupervisorTest.testNoDataIngestionTasks() io.druid.indexing.kafka.supe",
+https://github.com/apache/incubator-dolphinscheduler/issues/2910,memory,1.0,"fix #2910 master server will show exception for some time when it restart (#2913)
+
+* fix worker group config no effect
+
+* remove codehaus janino jar
+the license about janino maybe not compatiable with Apache v2
+
+* Merge remote-tracking branch 'upstream/dev-1.3.0' into dev-1.3.0
+
+# Conflicts:",dolphinscheduler-server/src/main/java/org/apache/dolphinscheduler/server/master/dispatch/host/LowerWeightHostManager.java LowerWeightHostManager.java dolphinscheduler-remote/src/main/java/org/apache/dolphinscheduler/remote/NettyRemotingClient.java dolphinscheduler-server/src/main/java/org/apache/dol,"org.apache.dolphinscheduler.server.master.dispatch.host.LowerWeightHostManager.init() org.apache.dolphinscheduler.remote.NettyRemotingClient.createChannel(org.apache.dolphinscheduler.remote.utils.Host,boolean) org.apache.dolphinscheduler.server.master.dispatch.host.LowerWeightHostManager.init() org.",
+https://github.com/apache/druid/issues/6028,concurrency,1.0,"Synchronize scheduled poll() calls in SQLMetadataSegmentManager (#6041) (#6056)
+
+Similar issue to https://github.com/apache/incubator-druid/issues/6028. Synchronize scheduled poll() calls in SQLMetadataSegmentManager (#6041)
+
+Similar issue to https://github.com/apache/incubator-druid/issues/6028.",server/src/main/java/io/druid/metadata/SQLMetadataRuleManager.java server/src/main/java/io/druid/metadata/SQLMetadataSegmentManager.java server/src/test/java/io/druid/metadata/SQLMetadataSegmentManagerTest.java SQLMetadataSegmentManager.java SQLMetadataRuleManager.java SQLMetadataSegmentManagerTest.,io.druid.metadata.SQLMetadataSegmentManager io.druid.metadata.SQLMetadataSegmentManager.poll() io.druid.metadata.SQLMetadataSegmentManager.isStarted() io.druid.metadata.SQLMetadataSegmentManager.stop() io.druid.metadata.SQLMetadataSegmentManager.start() io.druid.metadata.SQLMetadataSegmentManager.st,
+https://github.com/apache/pulsar/issues/7168,concurrency,1.0,"Fix bug: pattern consumer's receive() will cause deadlock for topics auto discovery (#7206)
+
+Fixes #7168 
+
+### Motivation
+
+When a pattern consumer is blocked by `receive()`, the `mutex_` will be held until new messages arrived. If the auto discovery timer task found new topics and tried to subsc",pulsar-client-cpp/lib/MultiTopicsConsumerImpl.cc pulsar-client-cpp/tests/BasicEndToEndTest.cc,,
+https://github.com/apache/bookkeeper/issues/1255,memory,1.0,"ISSUE #1255: Bookie should not advance the journal marker before creating the index file
+
+Descriptions of the changes in this PR:
+
+*Problem*
+
+Currently Bookie journal 'new ledger' entry if a ledger doesn't exist at ledger storage. This 'new ledger' entry is journaled before adding the entry to ledge",bookkeeper-server/src/main/java/org/apache/bookkeeper/bookie/Bookie.java bookkeeper-server/src/test/java/org/apache/bookkeeper/bookie/CheckpointOnNewLedgersTest.java bookkeeper-server/src/main/java/org/apache/bookkeeper/bookie/SyncThread.java CheckpointOnNewLedgersTest.java SyncThread.java Bookie.ja,"org.apache.bookkeeper.bookie.CheckpointOnNewLedgersTest org.apache.bookkeeper.bookie.SyncThread org.apache.bookkeeper.bookie.Bookie.addEntryInternal(org.apache.bookkeeper.bookie.LedgerDescriptor,io.netty.buffer.ByteBuf,boolean,org.apache.bookkeeper.proto.BookkeeperInternalCallbacks.WriteCallback,jav",
+https://github.com/apache/bookkeeper/issues/1757,concurrency,1.0,"ISSUE #1757: prevent race between flush and delete from recreating index
+
+IndexPersistencManager.flushLedgerHandle can race with delete by
+obtaining a FileInfo just prior to delete and then proceeding to rewrite
+the file info resurrecting it.  FileInfo provides a convenient point of
+synchronizati",bookkeeper-server/src/main/java/org/apache/bookkeeper/bookie/IndexInMemPageMgr.java bookkeeper-server/src/main/java/org/apache/bookkeeper/bookie/FileInfoBackingCache.java bookkeeper-server/src/main/java/org/apache/bookkeeper/bookie/IndexPersistenceMgr.java bookkeeper-server/src/main/java/org/apache/,org.apache.bookkeeper.bookie.LedgerCacheTest.testFlushDeleteRace() org.apache.bookkeeper.bookie.LedgerCacheTest.testFlushDeleteRace().4.run() org.apache.bookkeeper.bookie.LedgerCacheTest.testFlushDeleteRace().3 org.apache.bookkeeper.bookie.LedgerCacheTest.testFlushDeleteRace().3.run() org.apache.boo,
+https://github.com/apache/druid/issues/3007,memory,1.0,"Fixed NPE when dimension is null or empty. https://github.com/druid-io/druid/issues/3007 (#5299)
+
+",api/src/main/java/io/druid/data/input/impl/DimensionSchema.java processing/src/main/java/io/druid/segment/IndexIO.java processing/src/test/java/io/druid/segment/IndexMergerTestBase.java processing/src/main/java/io/druid/segment/incremental/IncrementalIndex.java DimensionSchema.java IndexIO.java Inde,"io.druid.data.input.impl.DimensionSchema io.druid.segment.IndexIO.V9IndexLoader.load(java.io.File,com.fasterxml.jackson.databind.ObjectMapper) io.druid.segment.IndexMergerTestBase.testDimensionWithEmptyName() io.druid.segment.incremental.IncrementalIndex.toTimeAndDims(io.druid.data.input.InputRow)",
+https://github.com/apache/bookkeeper/issues/583,concurrency,1.0,"ISSUE #596 ISSUE #583: Auto replication should honor ensemble placement policy
+
+Descriptions of the changes in this PR:
+
+This pull request ports the changes from [twitter/bookkeeperfc7e171](https://github.com/twitter/bookkeeper/commit/fc7e171135a58cddb9e91f5f614b3ceb6f9f9fee)
+
+The changes include:
+
+",bookkeeper-server/src/main/java/org/apache/bookkeeper/client/LedgerFragment.java bookkeeper-server/conf/log4j.shell.properties bookkeeper-server/src/main/java/org/apache/bookkeeper/replication/ReplicationWorker.java bookkeeper-server/src/test/java/org/apache/bookkeeper/replication/BookieAutoRecovery,,
+https://github.com/apache/incubator-dolphinscheduler/issues/935,concurrency,1.0,"Repair bug #901，#909，#935 (#952)
+
+* package
+
+* 修改工作流实例页面状态为运行时，禁止删除，删除package.json包里面的babel-runtime和jasmine-core
+
+* bugfix-user-specified queue takes precedence over tenant queue (#769)
+
+Solve the problem that the user queue setting does not take effect
+
+* update markdown docs which can not ",escheduler-ui/src/js/conf/home/pages/dag/_source/formModel/tasks/sql.vue escheduler-ui/src/js/conf/home/pages/datasource/pages/list/_source/createDataSource.vue escheduler-ui/src/js/conf/home/pages/datasource/pages/list/_source/list.vue escheduler-ui/src/js/conf/home/pages/monitor/pages/servers/_sou,,
+https://github.com/apache/bookkeeper/issues/1606,concurrency,1.0,"ISSUE #1606: Fixed race condition during expansion of concurrent open hash maps
+
+### Motivation
+
+As reported in #1606, there is a race condition in the concurrent open hash maps implementation. The race happens when the maps gets re-hashed after the expansion and the new arrays are substituting the ",bookkeeper-server/src/main/java/org/apache/bookkeeper/util/collections/ConcurrentOpenHashSet.java bookkeeper-server/src/test/java/org/apache/bookkeeper/util/collections/ConcurrentLongHashMapTest.java bookkeeper-server/src/main/java/org/apache/bookkeeper/util/collections/ConcurrentLongHashMap.java bo,org.apache.bookkeeper.util.collections.ConcurrentLongHashMapTest.stressConcurrentInsertionsAndReads() org.apache.bookkeeper.util.collections.ConcurrentOpenHashSet.Section org.apache.bookkeeper.util.collections.ConcurrentOpenHashSet.Section.rehash() org.apache.bookkeeper.util.collections.ConcurrentLo,
+https://github.com/apache/bookkeeper/issues/198,memory,1.0,"ISSUE #198: TestBackwardCompat.testCompat410 often fails due to io.netty.util.IllegalReferenceCountException
+
+Descriptions of the changes in this PR:
+
+Problem:
+
+in TestBackwardCompat#testCompact400, the test is to verify the current client can't talk to a 4.0.0 server.
+
+The 4.5.0 client is sending a",bookkeeper-server/src/main/java/org/apache/bookkeeper/proto/BookieProtoEncoding.java BookieProtoEncoding.java bookkeeper-server/src/main/java/org/apache/bookkeeper/proto/PerChannelBookieClient.java bookkeeper-server/src/test/java/org/apache/bookkeeper/proto/BookieProtoEncodingTest.java bookkeeper-se,org.apache.bookkeeper.proto.BookieProtoEncoding.ResponseEnDeCoderPreV3.decode(io.netty.buffer.ByteBuf) org.apache.bookkeeper.proto.BookieProtoEncodingTest org.apache.bookkeeper.proto.TestBackwardCompatCMS42 org.apache.bookkeeper.proto.TestBackwardCompatCMS42.testAuthSingleMessage() org.apache.bookke,
+https://github.com/apache/bookkeeper/issues/2279,memory,1.0,"2279 fix NPE when exec readjournal command
+
+Descriptions of the changes in this PR:
+This PR fix NullPointerException when exec readjournal command
+See issue #2279 
+
+
+Reviewers: Enrico Olivelli <eolivelli@gmail.com>, Sijie Guo <None>
+
+This closes #2280 from aloyszhang/read-jounral
+
+(cherry picked ",bookkeeper-server/src/main/java/org/apache/bookkeeper/bookie/BookieShell.java BookieShell.java bookkeeper-server/src/main/java/org/apache/bookkeeper/bookie/BookieShell.java BookieShell.java,org.apache.bookkeeper.bookie.BookieShell.ReadJournalCmd org.apache.bookkeeper.bookie.BookieShell.ReadJournalCmd,
+https://github.com/apache/bookkeeper/issues/1578,concurrency,1.0,"ISSUE #1578: Fixed deadlock in auditor blocking ZK thread
+
+### Motivation
+
+Fixes #1578
+
+After getting ZK callback from ZK event thread, we need to jump to a background thread before doing synchronous call to `admin.openLedgerNoRecovery(ledgerId);` which will try to make a ZK request a wait for a res",bookkeeper-server/src/main/java/org/apache/bookkeeper/replication/Auditor.java Auditor.java bookkeeper-server/src/main/java/org/apache/bookkeeper/replication/Auditor.java Auditor.java bookkeeper-server/src/main/java/org/apache/bookkeeper/replication/Auditor.java bookkeeper-server/src/main/java/org/a,"org.apache.bookkeeper.replication.Auditor.checkAllLedgers().7.process(java.lang.Long,org.apache.zookeeper.AsyncCallback$VoidCallback) org.apache.bookkeeper.replication.Auditor.checkAllLedgers().7.process(java.lang.Long,org.apache.zookeeper.AsyncCallback$VoidCallback) org.apache.bookkeeper.client.BKE",
+https://github.com/apache/druid/issues/5900,memory,1.0,"Prevent KafkaSupervisor NPE in generateSequenceName (#5900) (#5902) (#5972)
+
+* Prevent KafkaSupervisor NPE in checkPendingCompletionTasks (#5900)
+
+* throw IAE in generateSequenceName if groupId not found in taskGroups
+* add null check in checkPendingCompletionTasks
+
+* Add warn log in checkPendi",extensions-core/kafka-indexing-service/src/test/java/io/druid/indexing/kafka/supervisor/KafkaSupervisorTest.java extensions-core/kafka-indexing-service/src/main/java/io/druid/indexing/kafka/supervisor/KafkaSupervisor.java KafkaSupervisorTest.java KafkaSupervisor.java extensions-core/kafka-indexing-s,"io.druid.indexing.kafka.supervisor.KafkaSupervisorTest.TestableKafkaSupervisor.generateSequenceName(int) io.druid.indexing.kafka.supervisor.KafkaSupervisorTest.TestableKafkaSupervisor.generateSequenceName(java.util.Map,com.google.common.base.Optional,com.google.common.base.Optional) io.druid.indexin",
+https://github.com/apache/incubator-dolphinscheduler/issues/2892,memory,1.0,"branch dev merge from dev-1.3.0 (#3087)
+
+* add DolphinScheduler slack channel
+
+* Update README.md
+
+Co-Authored-By: Jiajie Zhong <zhongjiajie955@hotmail.com>
+
+* modify soft_version 1.2.2 to 1.3.0
+
+* Repair worklist cannot be deleted
+
+* update schema version (#2657)
+
+* change schema versio",.github/workflows/ci_e2e.yml .github/workflows/ci_ut.yml LICENSE NOTICE README.md README_zh_CN.md ambari_plugin/README.md ambari_plugin/common-services/DOLPHIN/1.3.0/alerts.json ambari_plugin/common-services/DOLPHIN/1.3.0/configuration/dolphin-alert.xml ambari_plugin/common-services/DOLPHIN/1.3.0/co,,
+https://github.com/apache/bookkeeper/issues/1544,concurrency,1.0,"ISSUE #1544: [DLOG] ConcurrentModificationException with nonblocking logReader.readNext(true)
+
+Descriptions of the changes in this PR:
+
+*Motivation*
+
+Fixes #1544. ConcurrentModificationException is thrown when trying to access a non-thread-safe hashmap from different threads.
+
+*Changes*
+
+Make sure a",stream/distributedlog/core/src/main/java/org/apache/distributedlog/impl/ZKLogSegmentMetadataStore.java ZKLogSegmentMetadataStore.java stream/distributedlog/core/src/main/java/org/apache/distributedlog/impl/ZKLogSegmentMetadataStore.java ZKLogSegmentMetadataStore.java,"org.apache.distributedlog.impl.ZKLogSegmentMetadataStore.notifyLogStreamDeleted(java.lang.String,java.util.Map) org.apache.distributedlog.impl.ZKLogSegmentMetadataStore.notifyLogSegmentsUpdated(java.lang.String,java.util.Map,org.apache.bookkeeper.versioning.Versioned) org.apache.distributedlog.impl.",
+https://github.com/apache/incubator-dolphinscheduler/issues/2903,memory,1.0,"Fix tasks not execute in sub-process when rerun scheduled process. #2903 (#2908)
+
+ Fix tasks not execute in sub-process when rerun scheduled process. #2903 (#2908)
+
+  Fix tasks not execute in sub-process when rerun scheduled process. #2903 (#2908)
+
+ branch dev merge from dev-1.3.0 (#3087)
+
+* add Dol",dolphinscheduler-service/src/main/java/org/apache/dolphinscheduler/service/process/ProcessService.java ProcessService.java dolphinscheduler-service/src/main/java/org/apache/dolphinscheduler/service/process/ProcessService.java ProcessService.java dolphinscheduler-service/src/main/java/org/apache/dolp,"org.apache.dolphinscheduler.service.process.ProcessService.createSubWorkProcessCommand(org.apache.dolphinscheduler.service.process.ProcessInstance,org.apache.dolphinscheduler.service.process.TaskInstance) org.apache.dolphinscheduler.service.process.ProcessService.createSubWorkProcessCommand(org.apac",
+https://github.com/apache/bookkeeper/issues/1487,memory,1.0,"[BOOKIE] [DBLEDGERSTORAGE] fix illegal reference count exception on filling read cache
+
+Descriptions of the changes in this PR:
+
+*Problem*
+
+ByteBuf is released at a finally block. DbLedgerStorage doesn't have to release it on return. If it does so, that will cause
+double-release and it will throw Il",bookkeeper-server/src/main/java/org/apache/bookkeeper/bookie/storage/ldb/SingleDirectoryDbLedgerStorage.java SingleDirectoryDbLedgerStorage.java bookkeeper-server/src/main/java/org/apache/bookkeeper/bookie/storage/ldb/SingleDirectoryDbLedgerStorage.java SingleDirectoryDbLedgerStorage.java,"org.apache.bookkeeper.bookie.storage.ldb.SingleDirectoryDbLedgerStorage.fillReadAheadCache(long,long,long) org.apache.bookkeeper.bookie.storage.ldb.SingleDirectoryDbLedgerStorage.fillReadAheadCache(long,long,long)",
+https://github.com/apache/druid/issues/4647,memory,1.0,"Hadoop indexing: Fix NPE when intervals not provided (#4686)
+
+* Fix #4647
+
+* NPE protect bucketInterval as well
+
+* Add test to verify timezone as well
+
+* Also handle case when intervals are already present
+
+* Fix checkstyle error
+
+* Use factory method instead for Datetime
+
+* Use Interval",indexing-hadoop/src/main/java/io/druid/indexer/DetermineHashedPartitionsJob.java indexing-hadoop/src/test/java/io/druid/indexer/DetermineHashedPartitionsJobTest.java indexing-hadoop/src/test/resources/druid.test.data.with.rows.in.timezone.tsv server/src/main/java/io/druid/segment/indexing/granularit,io.druid.segment.indexing.granularity.UniformGranularitySpec.bucketInterval(org.joda.time.DateTime) io.druid.indexer.DetermineHashedPartitionsJobTest.data() io.druid.indexer.DetermineHashedPartitionsJobTest io.druid.indexer.DetermineHashedPartitionsJob.DetermineCardinalityReducer.reduce(org.apache.h,
+https://github.com/apache/druid/issues/4279,concurrency,1.0,"Don't pass QueryMetrics down in concurrent and async QueryRunners (fixes #4279) (#4288)
+
+* Don't pass QueryMetrics down in concurrent and async QueryRunners
+
+* Rename QueryPlus.threadSafe() to withoutThreadUnsafeState(); Update QueryPlus.withQueryMetrics() Javadocs; Fix generics in MetricsEmitting",processing/src/main/java/io/druid/query/metadata/SegmentMetadataQueryRunnerFactory.java processing/src/main/java/io/druid/query/AsyncQueryRunner.java processing/src/main/java/io/druid/query/CPUTimeMetricQueryRunner.java processing/src/main/java/io/druid/query/groupby/epinephelinae/GroupByMergingQuer,"io.druid.query.metadata.SegmentMetadataQueryRunnerFactory.mergeRunners(java.util.concurrent.ExecutorService,java.lang.Iterable).2.apply(io.druid.query.QueryRunner).1.run(io.druid.query.QueryPlus,java.util.Map) io.druid.query.metadata.SegmentMetadataQueryRunnerFactory.mergeRunners(java.util.concurren",
+https://github.com/apache/bookkeeper/issues/1610,memory,1.0,"Issue #1610: netty leak detector logs 'LEAK: HashedWheelTimer.release() was not called before it's garbage-collected.' in unit tests
+
+Descriptions of the changes in this PR:
+
+Enabled netty's paranoid leak detection for tests.
+Fixed most of the 'LEAK: HashedWheelTimer.release() was not called before ",bookkeeper-server/src/main/java/org/apache/bookkeeper/proto/BookieServer.java bookkeeper-server/src/main/java/org/apache/bookkeeper/replication/Auditor.java bookkeeper-server/src/test/java/org/apache/bookkeeper/client/TestBookieWatcher.java bookkeeper-server/src/main/java/org/apache/bookkeeper/proto,,
+https://github.com/apache/pulsar/issues/5585,concurrency,1.0,"[Issue 5585][pulsar-client] Fix producer Semaphore release error  (#5587)
+
+### Motivation
+
+Fixes #5585 
+
+This PR is try to fix the dead lock issue which mentioned in #5585. The core problem is the semaphore release count calculation in replicate scenario.
+
+Replicator send a batch message(from ",pulsar-broker/src/test/java/org/apache/pulsar/client/impl/ProducerSemaphoreTest.java pulsar-client/src/main/java/org/apache/pulsar/client/impl/ProducerImpl.java ProducerSemaphoreTest.java ProducerImpl.java,"org.apache.pulsar.client.impl.ProducerSemaphoreTest org.apache.pulsar.client.impl.ProducerImpl.processOpSendMsg(org.apache.pulsar.client.impl.ProducerImpl$OpSendMsg) org.apache.pulsar.client.impl.ProducerImpl.ackReceived(org.apache.pulsar.client.impl.ClientCnx,long,long,long) org.apache.pulsar.clien",
+https://github.com/antlr/antlr4/issues/959,memory,1.0,"Fixed non-informative NullPointerException. Empty strings now not allowed. fixed #959.
+",tool/src/org/antlr/v4/semantics/BasicSemanticChecks.java tool-testsuite/test/org/antlr/v4/test/tool/TestToolSyntaxErrors.java tool/src/org/antlr/v4/tool/ErrorType.java TestToolSyntaxErrors.java BasicSemanticChecks.java ErrorType.java,org.antlr.v4.test.tool.TestToolSyntaxErrors.testNotAllowedEmptyStrings() org.antlr.v4.semantics.BasicSemanticChecks.enterTerminal(org.antlr.v4.tool.ast.GrammarAST) org.antlr.v4.tool.ErrorType,
+https://github.com/apache/druid/issues/6124,concurrency,1.0,"Fix three bugs with segment publishing. (#6155)
+
+* Fix three bugs with segment publishing.
+
+1. In AppenderatorImpl: always use a unique path if requested, even if the segment
+   was already pushed. This is important because if we don't do this, it causes
+   the issue mentioned in #6124.
+2. In I",indexing-service/src/main/java/io/druid/indexing/common/task/batch/parallel/SinglePhaseParallelIndexTaskRunner.java extensions-core/kafka-indexing-service/src/main/java/io/druid/indexing/kafka/LegacyKafkaIndexTaskRunner.java server/src/main/java/io/druid/segment/realtime/appenderator/BaseAppenderato,"io.druid.indexing.kafka.IncrementalPublishingKafkaIndexTaskRunner.SequenceMetadata.createPublisher(io.druid.indexing.common.TaskToolbox,boolean) io.druid.segment.realtime.appenderator.publishSegments(java.util.Set,java.lang.Object) io.druid.segment.realtime.appenderator.AppenderatorImpl.mergeAndPush",
+https://github.com/apache/incubator-dolphinscheduler/issues/884,concurrency,1.0,"Delete the'babel-plugin-transform-remove-console'dependency package (#873)
+
+* package
+
+* 修改工作流实例页面状态为运行时，禁止删除，删除package.json包里面的babel-runtime和jasmine-core
+
+* bugfix-user-specified queue takes precedence over tenant queue (#769)
+
+Solve the problem that the user queue setting does not take effec",escheduler-ui/package.json escheduler-ui/src/js/conf/home/pages/projects/pages/definition/pages/list/_source/timing.vue escheduler-ui/src/js/conf/home/pages/projects/pages/index/_source/defineUserCount.vue escheduler-ui/src/js/conf/home/pages/projects/pages/instance/pages/list/_source/list.vue esche,,
+https://github.com/apache/bookkeeper/issues/271,memory,1.0,"ISSUE #271: LedgerHandle#readEntries leaks ByteBufs
+
+Add a setNettyUsePooledBuffers() client configuration option to let the user decide to use Pooled vs Unpooled ByteBufs.
+Using v2 wire protocol Application receives the original ByteBuf return from Channel and it is responsible for 'releasing' it.
+",bookkeeper-server/src/main/java/org/apache/bookkeeper/proto/PerChannelBookieClient.java bookkeeper-server/src/main/java/org/apache/bookkeeper/conf/ClientConfiguration.java bookkeeper-server/src/test/java/org/apache/bookkeeper/client/BookKeeperTest.java bookkeeper-server/src/main/java/org/apache/book,org.apache.bookkeeper.client.BookKeeperTest.testReadEntryReleaseByteBufs() org.apache.bookkeeper.conf.ClientConfiguration.isNettyUsePooledBuffers() org.apache.bookkeeper.conf.ClientConfiguration org.apache.bookkeeper.conf.ClientConfiguration.setNettyUsePooledBuffers(boolean) org.apache.bookkeeper.cl,
+https://github.com/apache/incubator-dolphinscheduler/issues/2794,memory,1.0,"Fix [Bug] process definition json worker group convert #2794 (#2795)
+
+* add LoggerServerTest UT
+
+* add LoggerServerTest UT
+
+* add LoggerServerTest UT
+add RemoveTaskLogRequestCommandTest UT
+add RemoveTaskLogResponseCommandTest
+
+* master select worker filter high load worker #2704
+
+* master ",dolphinscheduler-common/src/main/java/org/apache/dolphinscheduler/common/model/TaskNode.java dolphinscheduler-common/src/test/java/org/apache/dolphinscheduler/common/shell/ShellExecutorTest.java dolphinscheduler-dao/src/main/java/org/apache/dolphinscheduler/dao/entity/ProcessData.java dolphinschedul,org.apache.dolphinscheduler.common.model.TaskNode org.apache.dolphinscheduler.common.model.TaskNode.getWorkerGroupId() org.apache.dolphinscheduler.common.model.TaskNode.setWorkerGroupId(java.lang.Integer) org.apache.dolphinscheduler.common.shell.ShellExecutorTest.execCommand().1.run() org.apache.dol,
