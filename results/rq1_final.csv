@@ -1,0 +1,15 @@
+setting,mode,macro_f1
+full,-,0.6891535447033372
+loo_title,hard,0.6179086786229644
+loi_title,hard,0.6188756385573391
+loo_description_clean,hard,0.6689572894297303
+loi_description_clean,hard,0.533201621686168
+loo_comments_model,hard,0.6546416546416546
+loi_comments_model,hard,0.4410788182261373
+loo_title,length,0.6293999789096277
+loi_title,length,0.6388265657347931
+loo_description_clean,length,0.6816962283384301
+loi_description_clean,length,0.5441701771073969
+loo_comments_model,length,0.640874707370871
+loi_comments_model,length,0.4574588877899133
+full_keyword_masked,mask,0.667101173832718

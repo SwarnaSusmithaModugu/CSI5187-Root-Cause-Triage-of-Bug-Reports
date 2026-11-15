@@ -1,141 +1,200 @@
-# Dataset notes
+# Dataset and experiment notes
 
-## Setup inventory
+## 1. Dataset provenance and freeze
 
-The code clone has no corpus; the release was extracted from the downloaded
-dataset archive into `data/raw/`.
+The extracted release contains 54,755 issues from 103 projects. Of these,
+19,641 have `commitsDetails`; the stricter source benchmark cites 10,459
+issues. The 369-report gold set contains 122 concurrency, 121 memory, and 126
+semantic reports across 61 projects and 369 unique URLs.
 
-## Dataset inventory
+The source training tables overlap completely with the gold labels and are
+not independent silver data. The dataset was selected using keyword search
+and manual examination, so keyword presence is a selection artifact rather
+than an independent test target.
 
-The extracted dataset is available under `data/raw/`.
-
-- Total size: 533,423,127 bytes (0.497 GiB)
-- Files: 2,906
-- Project folders containing `issuesDataWStats.json`: 103
-- Gold label folders: `data/raw/mlClassifier/data/bugreports/{concurrency,memory,semantic}`
-- Label files: 122 concurrency, 121 memory, 126 semantic
-- Dataset documentation: `data/raw/mlClassifier/data/dataset_composition.txt`
-- Project data: `data/raw/githubanalysis/data`
-- Keyword data: `data/raw/keywordSearch/data`
-- Configuration: `data/raw/config.json`
-- Example issue: `data/raw/exampleIssue.json`
-
-## Gold label table
-
-`data/interim/labels.csv` was generated using the required filename pattern.
-The verification output is:
+The frozen gold file is `data/processed/gold_v1.csv`:
 
 ```text
-concurrency    122
-memory         121
-semantic       126
-total rows     369
-distinct URLs  369
-distinct projects 61
+rows=369  columns=43
+sha256_16=5ae3365e515e22ce
+comments with a fix-revealing phrase masked: 143
+empty descriptions kept: 21
+bot authors kept: 5
+exact/near/cross-label duplicates: 0/0/0
 ```
 
-Top five projects by report count:
+Raw `comments_clean` remains available for inspection; models use
+`comments_model`. The frozen-file test passed.
+
+## 2. Gold join and comment recovery
+
+All 369 gold URLs joined to project issue JSON. Twenty-five fix dates
+preceded issue creation dates and were retained as an audit note.
+
+Comment recovery completed without request errors:
 
 ```text
-netty/netty                          73
-elastic/elasticsearch                32
-redisson/redisson                    26
-spring-projects/spring-boot         23
-AsyncHttpClient/async-http-client   14
+issues requested: 369
+fetch ok: 369
+issues with any comment: 286
+comments total: 1939
+human comments before fix: 254/369 (69%)
 ```
 
-The sample label files contain the issue title followed by the issue body.
-The observed samples include diagnostic stack traces, code, and URLs; no fix
-content was inferred or added.
+Coverage was 254/369 using authored dates, 262/369 using commit dates, and
+252/369 using closed dates. The authored-date coverage led to the static RQ4
+decision. A leakage scan found 106 reports with at least one flagged pre-fix
+comment; 143 comment values were masked in the frozen model field.
 
-## Trainingset files
+## 3. RQ1 final
 
-The three trainingset files are larger feature/data tables, not the 369-row
-gold table:
+Project-grouped five-fold results using title, cleaned description, and
+leak-masked comments:
 
 ```text
-trainingset_concurrency.csv: 5528 data rows
-trainingset_memory.csv:      3370 data rows
-trainingset_semantic.csv:    2640 data rows
+setting                    mode    macro_f1
+full                       -       0.689
+loo_title                  hard    0.618
+loi_title                  hard    0.619
+loo_description_clean      hard    0.669
+loi_description_clean      hard    0.533
+loo_comments_model         hard    0.655
+loi_comments_model         hard    0.441
+loo_title                  length  0.629
+loi_title                  length  0.639
+loo_description_clean      length  0.682
+loi_description_clean      length  0.544
+loo_comments_model         length  0.641
+loi_comments_model         length  0.457
+full_keyword_masked        mask    0.667
 ```
 
-Their headers include `created`, `user`, `body`, `closed`, `commitsDetails`,
-`url`, `labels`, and `title`, along with commit and repository statistics.
+The normal-to-masked drop was 0.022. The keyword shortcut baseline is 0.773,
+so the content result is below the artifact baseline. The masked result is
+above the preliminary title/description result of 0.655. Comment-only
+results are lower bounds because comments cover 69% of reports.
 
-The provenance overlap check found:
+After fixing the InfoGain stopword bug, the top terms were:
 
 ```text
-gold urls: 369
-trainingset_concurrency.csv: rows=122 urls=122 overlap_with_gold=122
-    gold concurrency inside this file: 122
-    gold memory inside this file: 0
-    gold semantic inside this file: 0
-trainingset_memory.csv: rows=121 urls=121 overlap_with_gold=121
-    gold concurrency inside this file: 0
-    gold memory inside this file: 121
-    gold semantic inside this file: 0
-trainingset_semantic.csv: rows=128 urls=126 overlap_with_gold=126
-    gold concurrency inside this file: 0
-    gold memory inside this file: 0
-    gold semantic inside this file: 126
-gold projects: 61  shared with trainingset: 61
+url, user, issue, fix, problem, using, thanks, version, code, use, like, case
 ```
 
-Therefore, these files are not an independent silver training set. They
-contain all 369 gold reports and must not be used for training or evaluation
-without an explicit overlap-removal decision.
+These are report-vocabulary terms, not the C/M selection keywords.
 
-## Dataset provenance
+## 4. RQ3 classical and hybrid
 
-The source README states:
-
-> The full data set consists of 54755 "bug" labeled issues reports collected
-> from 103 open source projects hosted on GitHub.
-
-It also states:
-
-> From these, 10459 issues are used based on filter criteria described in
-> "Root cause prediction based on bug reports" (commits available, changes in
-> production java code, only dealing with a single issue, less than 10
-> commits, max. 20 files changed per commit, max. 250 LOC changed per file).
-
-The README states:
-
-> A training set was created from above described benchmark, using keyword
-> search on commit message combined with random selection followed by manual
-> examination of those bugs.
-
-Class-specific sampling is stated in the dataset composition file as:
+Grouped five-fold classical results:
 
 ```text
-keyword search memory: (119, 5)
-random selected memory: (2, 5)
-keyword search concurrency: (118, 5)
-random selected concurrency: (4, 5)
-keyword search semantic: (173, 5)
-keyword search semantic with confidence above 7: (150, 5)
-keyword search semantic sample size: (7, 5)
-random selected semantic: (126, 5)
-random selected semantic with confidence above 7: (119, 5)
-full semantic training set: (126, 5)
+setting  method    macro-F1  concurrency  memory  semantic
+normal   majority  0.240     0.000        0.296   0.423
+normal   svm       0.689     0.656        0.723   0.689
+normal   knn       0.555     0.593        0.643   0.429
+normal   tree      0.595     0.543        0.682   0.561
+masked   majority  0.240     0.000        0.296   0.423
+masked   svm       0.667     0.622        0.667   0.712
+masked   knn       0.545     0.574        0.613   0.447
+masked   tree      0.587     0.511        0.564   0.686
 ```
 
-The three final class counts are 122 concurrency, 121 memory, and 126
-semantic. The documents identify manual examination/classification as the
-labeling process, but do not state a separate label source beyond that:
-**label source: not stated**.
+Normal-to-masked drops were SVM 0.022, KNN 0.010, and tree 0.008.
 
-## Gold join
-
-The join to the project issue JSON completed successfully:
+The nested grouped-CV hybrid added word and character features, structural
+features, and explicit keyword/exception features in normal mode:
 
 ```text
-labels: 369  matched to issue json: 369  unmatched: 0
-fix_date from commit: 369  from closed: 0  fix authored before issue created: 25
-projects: 61  largest: netty/netty=73 (20%)
-wrote data\interim\gold_joined.csv rows=369
+normal hybrid: macro-F1=0.770
+  per-class: concurrency=0.774, memory=0.790, semantic=0.746
+masked hybrid: macro-F1=0.700
+  per-class: concurrency=0.655, memory=0.712, semantic=0.734
+hybrid-normal vs plain-SVM McNemar exact p=0.0005
 ```
 
-All 369 reports matched. Twenty-five reports have a commit authored date
-earlier than the issue creation date; this is recorded for the comment-cut
-audit rather than silently corrected.
+The masked hybrid remains above majority (0.240) and below the keyword
+artifact baseline (0.773).
+
+## 5. Silver: final design, per-LF validation, focused build
+
+Silver is restricted to concurrency and memory; semantic remains gold-only.
+The pool is the 19,641 benchmark-complete issue records. Only fix-side LFs
+meeting 0.70 accuracy on gold are trusted.
+
+Final context-anchored validation:
+
+```text
+lf                    coverage  accuracy_where_fires  fires
+lf_commit_keywords    0.339     0.920                  125
+lf_changed_paths      0.035     0.538                   13
+lf_changed_methods    0.111     0.610                   41
+lf_exception_type     0.125     0.543                   46
+lf_report_keywords    0.455     0.702                  168
+trusted fix LFs: lf_commit_keywords
+```
+
+The source-file/non-bug filter produced 486 rows before focus filtering:
+244 concurrency and 242 memory. The focused build adds merge detection,
+at most two referenced issues, at most 20 changed files, and the real-source
+requirement. It removed 6,451 of 19,270 wild reports and produced:
+
+```text
+focused silver: 454 rows
+concurrency: 212
+memory: 242
+near-duplicates removed against gold: 0
+```
+
+Both `silver_unfiltered.csv` and `silver_focused.csv` are preserved for the
+before/after validation. The 40-row sheets
+`review_unfiltered.csv` and `review_focused.csv` contain blank `my_label`
+fields. Author labeling is pending; no precision result has been fabricated.
+
+## 6. Commit tangling sub-finding
+
+Tangling is defined here as a merge commit, more than two referenced issue
+numbers, or more than 20 changed files. The contrast is prominent:
+
+```text
+wild benchmark-complete pool: 17.3% tangled
+gold:                         1.6% tangled
+```
+
+The gold check matched exactly 369 records using `(normalized URL, project)`
+from `gold_joined.csv`. Two duplicate URLs were found; both duplicate commit
+payloads were identical and the first deterministic record was retained.
+
+Top wild project tangling rates were:
+
+```text
+mozilla/MozStumbler                  0.900
+Netflix/Hystrix                      0.714
+eclipse/kura                         0.662
+apache/incubator-dolphinscheduler    0.624
+apache/druid                         0.553
+junit-team/junit4                    0.540
+antlr/antlr4                         0.500
+eclipse/deeplearning4j               0.493
+oracle/graal                         0.480
+hazelcast/hazelcast                  0.479
+```
+
+The before/after precision comparison is pending author labels in the two
+40-row sheets. It must be reported as single-annotator author validation,
+not two-coder agreement.
+
+## 7. Threats to validity
+
+- Gold labels and the 0.773 keyword baseline reflect keyword-selected
+  sampling, so gold precision may overstate wild-pool precision.
+- Grouped-by-project cross-validation is retained; random CV was not used.
+- Comments cover only 69% of reports under the authored-date cutoff.
+- The silver labels are weak supervision from commit evidence, not
+  independent ground truth.
+- Tangled commits can mix concerns and transfer a misleading keyword across
+  several issues; the focus filter is a practical mitigation, not a novel
+  tangling detector.
+- The structure-only probe reached 0.39 macro-F1 versus 0.29 random, but its
+  signal was dominated by fix size and confounded with class-dependent
+  sampling, so it was not adopted.
+- LLM validation and author labels for the silver review sheets remain
+  pending; no LLM agreement or precision statistic is reported.

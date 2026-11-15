@@ -1,0 +1,311 @@
+url,silver_label,silver_conf,commit_message,changed_paths,changed_methods,my_label
+https://github.com/bazelbuild/bazel/issues/6806,concurrency,1.0,"  Add --build_event_upload_max_threads option
+
+This is a follow up for https://github.com/bazelbuild/bazel/commit/7fc967c4d6435de2bb4e34aac00ca2e499f55fca, related issue https://github.com/bazelbuild/bazel/issues/6806
+
+RELNOTES: None
+PiperOrigin-RevId: 223944430
+ Use a fixed thread pool in ByteStrea",src/main/java/com/google/devtools/build/lib/remote/ByteStreamBuildEventArtifactUploader.java src/main/java/com/google/devtools/build/lib/remote/ByteStreamBuildEventArtifactUploaderFactory.java src/test/java/com/google/devtools/build/lib/remote/ByteStreamBuildEventArtifactUploaderTest.java src/main/j,com.google.devtools.build.lib.remote.ByteStreamBuildEventArtifactUploader com.google.devtools.build.lib.remote.ByteStreamBuildEventArtifactUploaderFactory.create(com.google.devtools.build.lib.runtime.CommandEnvironment) com.google.devtools.build.lib.remote.ByteStreamBuildEventArtifactUploaderTest.te,
+https://github.com/bazelbuild/bazel/issues/11125,concurrency,1.0,"Automated rollback of commit 886d7d590fae2f860788a4c8ccb4624e59fc212d.
+
+*** Reason for rollback ***
+
+b/154243114
+
+Fixes https://github.com/bazelbuild/bazel/issues/11125
+
+*** Original change description ***
+
+Use ByteStrings instead of Strings for stdout/err
+
+These are starting as opaque bytes in Sync",src/main/java/com/google/devtools/build/lib/runtime/SynchronizedOutputStream.java src/main/java/com/google/devtools/build/lib/buildeventstream/ProgressEvent.java src/main/java/com/google/devtools/build/lib/buildeventservice/BuildEventServiceModule.java src/test/java/com/google/devtools/build/lib/run,"com.google.devtools.build.lib.runtime.SynchronizedOutputStream.LazyByteStringIterable.iterator() com.google.devtools.build.lib.runtime.SynchronizedOutputStream.LazyByteStringIterable.iterator().1.hasNext() com.google.devtools.build.lib.runtime.SynchronizedOutputStream.write(byte[],int,int) com.googl",
+https://github.com/AsyncHttpClient/async-http-client/issues/94,concurrency,1.0,"Back SpnegoEngine thread safety fix from #95, close #94
+",src/main/java/com/ning/http/client/providers/netty/spnego/SpnegoEngine.java SpnegoEngine.java,com.ning.http.client.providers.netty.spnego.SpnegoEngine com.ning.http.client.providers.netty.spnego.SpnegoEngine.generateToken(java.lang.String),
+https://github.com/apache/bookkeeper/issues/716,memory,1.0,"ISSUE #716: PendingAddOp accesses a released ByteBuf
+
+Descriptions of the changes in this PR:
+
+- release `toSend` bytebuf only when a PendingAddOp is recycled.
+- fix MockBookKeeperTestCase to run callbacks in the same executor thread.
+
+Author: Sijie Guo <sijie@apache.org>
+
+Reviewers: Enrico Olivelli",bookkeeper-server/src/main/java/org/apache/bookkeeper/client/PendingAddOp.java bookkeeper-server/src/test/java/org/apache/bookkeeper/client/MockBookKeeperTestCase.java MockBookKeeperTestCase.java PendingAddOp.java bookkeeper-server/src/main/java/org/apache/bookkeeper/client/PendingAddOp.java bookkee,org.apache.bookkeeper.client.MockBookKeeperTestCase.setupWriteLedgerMetadata() org.apache.bookkeeper.client.MockBookKeeperTestCase.setupCreateLedgerMetadata() org.apache.bookkeeper.client.MockBookKeeperTestCase.setupWriteLedgerMetadata().7.answer(org.mockito.invocation.InvocationOnMock) org.apache.b,
+https://github.com/apache/druid/issues/4937,concurrency,1.0,"Fix dictionary ID race condition in IncrementalIndexStorageAdapter (#6340)
+
+Possibly related to https://github.com/apache/incubator-druid/issues/4937
+
+--------
+
+There is currently a race condition in IncrementalIndexStorageAdapter that can lead to exceptions like the following, when running quer",processing/src/main/java/org/apache/druid/segment/incremental/IncrementalIndexStorageAdapter.java processing/src/test/java/org/apache/druid/segment/incremental/IncrementalIndexStorageAdapterTest.java IncrementalIndexStorageAdapter.java IncrementalIndexStorageAdapterTest.java,org.apache.druid.segment.incremental.IncrementalIndexStorageAdapter.IncrementalIndexCursor org.apache.druid.segment.incremental.IncrementalIndexStorageAdapterTest.testCursorDictionaryRaceConditionFix() org.apache.druid.segment.incremental.IncrementalIndexStorageAdapterTest.DictionaryRaceTestFilter,
+https://github.com/AsyncHttpClient/async-http-client/issues/1380,concurrency,1.0,"Upgrade to RfJava2 for testing reactive streams, close #1380
+
+Motivation:
+
+ReactiveStreamsTest#testConnectionDoesNotGetClosed randomly fails.
+The server sometimes receives chunks out of order.
+
+Modifications:
+
+The issue seems to be a RxJava1 one.
+Upgrade to RxJava2.
+
+Result:
+
+No more erroneous rando",client/src/test/java/org/asynchttpclient/reactivestreams/ReactiveStreamsTest.java extras/rxjava2/pom.xml client/pom.xml pom.xml extras/rxjava/pom.xml ReactiveStreamsTest.java client/src/main/java/org/asynchttpclient/netty/request/body/NettyReactiveStreamsBody.java NettyReactiveStreamsBody.java clien,"org.asynchttpclient.reactivestreams.ReactiveStreamsTest.createPublisher(byte[],int) org.asynchttpclient.reactivestreams.ReactiveStreamsTest.testFailingStream() org.asynchttpclient.reactivestreams.ReactiveStreamsTest.ByteBufIterable.iterator().1 org.asynchttpclient.netty.request.body.NettyReactiveStr",
+https://github.com/apache/pulsar/issues/5832,memory,1.0,"[Issue 5832][Pulsar IO]Fix npe of debezium delete event (#5876)
+
+Fixes https://github.com/apache/pulsar/issues/5832
+
+Master Issue: https://github.com/apache/pulsar/issues/5832
+
+### Motivation
+
+Currently, in debezium, for delete events, in order to be compatible with Kafka's compaction, each de",pulsar-io/kafka-connect-adaptor/src/main/java/org/apache/pulsar/io/kafka/connect/KafkaConnectSource.java tests/integration/src/test/java/org/apache/pulsar/tests/integration/functions/PulsarFunctionsTest.java tests/integration/src/test/java/org/apache/pulsar/tests/integration/io/DebeziumMongoDbSource,org.apache.pulsar.io.kafka.connect.KafkaConnectSource.read() org.apache.pulsar.tests.integration.functions.PulsarFunctionsTest.testDebeziumMySqlConnect() org.apache.pulsar.tests.integration.functions.PulsarFunctionsTest.testDebeziumPostgreSqlConnect() org.apache.pulsar.tests.integration.functions.Pu,
+https://github.com/apache/bookkeeper/issues/271,memory,1.0,"ISSUE #271: LedgerHandle#readEntries leaks ByteBufs
+
+Add a setNettyUsePooledBuffers() client configuration option to let the user decide to use Pooled vs Unpooled ByteBufs.
+Using v2 wire protocol Application receives the original ByteBuf return from Channel and it is responsible for 'releasing' it.
+",bookkeeper-server/src/main/java/org/apache/bookkeeper/proto/PerChannelBookieClient.java bookkeeper-server/src/main/java/org/apache/bookkeeper/conf/ClientConfiguration.java bookkeeper-server/src/test/java/org/apache/bookkeeper/client/BookKeeperTest.java bookkeeper-server/src/main/java/org/apache/book,org.apache.bookkeeper.client.BookKeeperTest.testReadEntryReleaseByteBufs() org.apache.bookkeeper.conf.ClientConfiguration.isNettyUsePooledBuffers() org.apache.bookkeeper.conf.ClientConfiguration org.apache.bookkeeper.conf.ClientConfiguration.setNettyUsePooledBuffers(boolean) org.apache.bookkeeper.cl,
+https://github.com/apache/pulsar/issues/5579,memory,1.0,"Fix bug that backlog message that has not yet expired could be deleted due to TTL (#6211)
+
+Fixes #5579 
+
+### Motivation
+
+In Pulsar 2.4.1 and later versions, if message TTL is enabled, `PersistentMessageExpiryMonitor` always deletes one non-expired message every 5 minutes.
+
+The cause of this bu",managed-ledger/src/main/java/org/apache/bookkeeper/mledger/impl/OpFindNewest.java managed-ledger/src/test/java/org/apache/bookkeeper/mledger/impl/ManagedCursorTest.java pulsar-broker/src/test/java/org/apache/pulsar/broker/service/PersistentMessageFinderTest.java OpFindNewest.java ManagedCursorTest.j,"org.apache.bookkeeper.mledger.impl.OpFindNewest.readEntryComplete(org.apache.bookkeeper.mledger.Entry,java.lang.Object) org.apache.bookkeeper.mledger.impl.ManagedCursorTest.testFindNewestMatching() org.apache.bookkeeper.mledger.impl.ManagedCursorTest.internalTestFindNewestMatchingAllEntries(java.lan",
+https://github.com/apache/pulsar/issues/5585,concurrency,1.0,"[Issue 5585][pulsar-client] Fix producer Semaphore release error  (#5587)
+
+### Motivation
+
+Fixes #5585 
+
+This PR is try to fix the dead lock issue which mentioned in #5585. The core problem is the semaphore release count calculation in replicate scenario.
+
+Replicator send a batch message(from ",pulsar-broker/src/test/java/org/apache/pulsar/client/impl/ProducerSemaphoreTest.java pulsar-client/src/main/java/org/apache/pulsar/client/impl/ProducerImpl.java ProducerSemaphoreTest.java ProducerImpl.java,"org.apache.pulsar.client.impl.ProducerSemaphoreTest org.apache.pulsar.client.impl.ProducerImpl.processOpSendMsg(org.apache.pulsar.client.impl.ProducerImpl$OpSendMsg) org.apache.pulsar.client.impl.ProducerImpl.ackReceived(org.apache.pulsar.client.impl.ClientCnx,long,long,long) org.apache.pulsar.clien",
+https://github.com/apache/bookkeeper/issues/1241,memory,1.0,"Issue #1241: Fixed NPE in PerChannelBookieClient
+
+The `CompletionValue` object from the map can be null in some cases and we need to protect for it.
+
+Fixes #1241
+
+Author: Matteo Merli <mmerli@apache.org>
+
+Reviewers: Sijie Guo <sijie@apache.org>
+
+This closes #1242 from merlimat/fix-npe, closes #1241
+",bookkeeper-server/src/main/java/org/apache/bookkeeper/proto/PerChannelBookieClient.java PerChannelBookieClient.java,"org.apache.bookkeeper.proto.PerChannelBookieClient.initTLSHandshake().7.operationComplete(io.netty.util.concurrent.Future) org.apache.bookkeeper.proto.PerChannelBookieClient.writeAndFlush(io.netty.channel.Channel,org.apache.bookkeeper.proto.PerChannelBookieClient$CompletionKey,java.lang.Object).5.op",
+https://github.com/apache/pulsar/issues/62,concurrency,1.0,"Use threadsafe formatter (#64)
+
+* Use thread safe datetime formatter
+
+This closes #62
+
+* Organize import lines
+",pulsar-broker/src/main/java/com/yahoo/pulsar/broker/admin/PersistentTopics.java pulsar-broker/src/main/java/com/yahoo/pulsar/broker/service/Consumer.java pulsar-broker/src/main/java/com/yahoo/pulsar/broker/service/Producer.java pulsar-broker/src/main/java/com/yahoo/pulsar/broker/service/persistent/P,"com.yahoo.pulsar.broker.admin.PersistentTopics com.yahoo.pulsar.broker.admin.PersistentTopics.peekNthMessage(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,boolean) com.yahoo.pulsar.broker.service.Consumer com.yahoo.pulsar.broker.service.Producer com.yahoo.p",
+https://github.com/AsyncHttpClient/async-http-client/issues/1195,concurrency,1.0,"Race condition in NettyRequestSender#sendRequestWithOpenChannel, close #1195
+",client/src/main/java/org/asynchttpclient/netty/request/NettyRequestSender.java NettyRequestSender.java,"org.asynchttpclient.netty.request.NettyRequestSender.sendRequestWithOpenChannel(org.asynchttpclient.Request,org.asynchttpclient.proxy.ProxyServer,org.asynchttpclient.netty.NettyResponseFuture,org.asynchttpclient.AsyncHandler,io.netty.channel.Channel)",
+https://github.com/apache/pulsar/issues/7163,memory,1.0,"fix get partitioned metadata  throws NullPointerException (#7164)
+
+Master Issue: #7163
+## Motivation
+
+Sometimes get partitioned metadata will throws NullPointerException, because the NamespaceService not initialized yet , so needed a judgment .
+
+## Modifications
+BrokerService
+```java
+       ",pulsar-broker/src/main/java/org/apache/pulsar/broker/service/BrokerService.java BrokerService.java,org.apache.pulsar.broker.service.BrokerService.fetchPartitionedTopicMetadataCheckAllowAutoCreationAsync(org.apache.pulsar.common.naming.TopicName),
+https://github.com/apache/pulsar/issues/6692,memory,1.0,"Avoid prefetch too much data when offloading data to HDFS (#6717)
+
+Fixes #6692 
+
+### Motivation
+avoid prefetch too much data when offloading, which may lead to OOM;
+fix object not close issue, which is also mentioned by congbobo184 https://github.com/apache/pulsar/pull/6697
+
+*Explain here the ",conf/broker.conf pulsar-broker-common/src/main/java/org/apache/pulsar/broker/ServiceConfiguration.java pulsar-common/src/main/java/org/apache/pulsar/common/policies/data/OffloadPolicies.java tiered-storage/file-system/src/main/java/org/apache/bookkeeper/mledger/offload/filesystem/impl/FileSystemMana,org.apache.pulsar.broker.ServiceConfiguration org.apache.pulsar.common.policies.data.OffloadPolicies org.apache.pulsar.common.policies.data.OffloadPolicies.hashCode() org.apache.pulsar.common.policies.data.OffloadPolicies.equals(java.lang.Object) org.apache.pulsar.common.policies.data.OffloadPolicie,
+https://github.com/apache/pulsar/issues/114,concurrency,1.0,"[#114] Process ZK event from background thread to avoid deadlock on ZK sync operations (#115)
+
+",pulsar-broker/src/main/java/com/yahoo/pulsar/broker/namespace/NamespaceService.java NamespaceService.java,"com.yahoo.pulsar.broker.namespace.NamespaceService.splitAndOwnBundle(com.yahoo.pulsar.common.naming.NamespaceBundle).2.processResult(int,java.lang.String,java.lang.Object,org.apache.zookeeper.data.Stat) com.yahoo.pulsar.broker.namespace.NamespaceService.splitAndOwnBundle(com.yahoo.pulsar.common.nami",
+https://github.com/bazelbuild/bazel/issues/9995,concurrency,1.0,"Use FileSystemUtils.moveFile instead of renameTo function of Path
+
+renameTo is sometimes flaky on Windows, moveFile is a more robust implementation.
+
+Fixes https://github.com/bazelbuild/bazel/issues/9995
+
+RELNOTES: None
+PiperOrigin-RevId: 274539649
+ Fix renameTo function on Windows
+
+Fixes https://gi",src/main/java/com/google/devtools/build/lib/server/GrpcServerImpl.java GrpcServerImpl.java src/main/java/com/google/devtools/build/lib/windows/WindowsFileSystem.java WindowsFileSystem.java src/main/java/com/google/devtools/build/lib/server/GrpcServerImpl.java GrpcServerImpl.java src/main/java/com/go,"com.google.devtools.build.lib.server.GrpcServerImpl.writeServerStatusFiles(java.net.InetSocketAddress) com.google.devtools.build.lib.windows.WindowsFileSystem.renameTo(com.google.devtools.build.lib.vfs.Path,com.google.devtools.build.lib.vfs.Path) com.google.devtools.build.lib.server.GrpcServerImpl.w",
+https://github.com/apache/bookkeeper/issues/1255,memory,1.0,"ISSUE #1255: Bookie should not advance the journal marker before creating the index file
+
+Descriptions of the changes in this PR:
+
+*Problem*
+
+Currently Bookie journal 'new ledger' entry if a ledger doesn't exist at ledger storage. This 'new ledger' entry is journaled before adding the entry to ledge",bookkeeper-server/src/main/java/org/apache/bookkeeper/bookie/Bookie.java bookkeeper-server/src/test/java/org/apache/bookkeeper/bookie/CheckpointOnNewLedgersTest.java bookkeeper-server/src/main/java/org/apache/bookkeeper/bookie/SyncThread.java CheckpointOnNewLedgersTest.java SyncThread.java Bookie.ja,"org.apache.bookkeeper.bookie.CheckpointOnNewLedgersTest org.apache.bookkeeper.bookie.SyncThread org.apache.bookkeeper.bookie.Bookie.addEntryInternal(org.apache.bookkeeper.bookie.LedgerDescriptor,io.netty.buffer.ByteBuf,boolean,org.apache.bookkeeper.proto.BookkeeperInternalCallbacks.WriteCallback,jav",
+https://github.com/apache/bookkeeper/issues/1606,concurrency,1.0,"ISSUE #1606: Fixed race condition during expansion of concurrent open hash maps
+
+### Motivation
+
+As reported in #1606, there is a race condition in the concurrent open hash maps implementation. The race happens when the maps gets re-hashed after the expansion and the new arrays are substituting the ",bookkeeper-server/src/main/java/org/apache/bookkeeper/util/collections/ConcurrentOpenHashSet.java bookkeeper-server/src/test/java/org/apache/bookkeeper/util/collections/ConcurrentLongHashMapTest.java bookkeeper-server/src/main/java/org/apache/bookkeeper/util/collections/ConcurrentLongHashMap.java bo,org.apache.bookkeeper.util.collections.ConcurrentLongHashMapTest.stressConcurrentInsertionsAndReads() org.apache.bookkeeper.util.collections.ConcurrentOpenHashSet.Section org.apache.bookkeeper.util.collections.ConcurrentOpenHashSet.Section.rehash() org.apache.bookkeeper.util.collections.ConcurrentLo,
+https://github.com/apache/pulsar/issues/6714,memory,1.0,"fix_admin_getIndividualMsgsFromBatch_bug (#6715)
+
+**Motivation**
+fix when get batch message from http response, only get the first message. #6714
+```javascript
+for (int i = 0; i < batchSize; i++) {
+            String batchMsgId = msgId + "":"" + i;
+            PulsarApi.SingleMessageMetadata.Buil",pulsar-broker/src/test/java/org/apache/pulsar/broker/admin/AdminTopicApiTest.java pulsar-client-admin/src/main/java/org/apache/pulsar/client/admin/internal/TopicsImpl.java AdminTopicApiTest.java TopicsImpl.java pulsar-broker/src/test/java/org/apache/pulsar/broker/admin/AdminTopicApiTest.java pulsar-,"org.apache.pulsar.broker.admin.AdminTopicApiTest org.apache.pulsar.client.admin.internal.TopicsImpl.getIndividualMsgsFromBatch(java.lang.String,java.lang.String,byte[],java.util.Map) org.apache.pulsar.broker.admin.AdminTopicApiTest org.apache.pulsar.client.admin.internal.TopicsImpl.getIndividualMsgs",
+https://github.com/apache/pulsar/issues/7168,concurrency,1.0,"Fix bug: pattern consumer's receive() will cause deadlock for topics auto discovery (#7206)
+
+Fixes #7168 
+
+### Motivation
+
+When a pattern consumer is blocked by `receive()`, the `mutex_` will be held until new messages arrived. If the auto discovery timer task found new topics and tried to subsc",pulsar-client-cpp/lib/MultiTopicsConsumerImpl.cc pulsar-client-cpp/tests/BasicEndToEndTest.cc,,
+https://github.com/apache/skywalking/issues/31,concurrency,1.0,"1.提交新的AtomicRangeInteger，避免整数越界、整数循环，造成问题。修复#31。
+ 补充#31部分代码。修复边界BUG。并提交更合理的测试用例。
+",skywalking-api/src/main/java/com/ai/cloud/skywalking/buffer/BufferGroup.java skywalking-protocol/src/main/java/com/ai/cloud/skywalking/util/AtomicRangeInteger.java skywalking-protocol/src/test/java/test/ai/cloud/skywalking/util/AtomicRangeIntegerTest.java skywalking-server/src/main/java/com/ai/cloud,com.ai.cloud.skywalking.buffer.BufferGroup com.ai.cloud.skywalking.buffer.BufferGroup.save(com.ai.cloud.skywalking.protocol.Span) com.ai.cloud.skywalking.util.AtomicRangeInteger test.ai.cloud.skywalking.util.AtomicRangeIntegerTest com.ai.cloud.skywalking.reciever.buffer.DataBufferThread com.ai.cloud,
+https://github.com/apache/bookkeeper/issues/1544,concurrency,1.0,"ISSUE #1544: [DLOG] ConcurrentModificationException with nonblocking logReader.readNext(true)
+
+Descriptions of the changes in this PR:
+
+*Motivation*
+
+Fixes #1544. ConcurrentModificationException is thrown when trying to access a non-thread-safe hashmap from different threads.
+
+*Changes*
+
+Make sure a",stream/distributedlog/core/src/main/java/org/apache/distributedlog/impl/ZKLogSegmentMetadataStore.java ZKLogSegmentMetadataStore.java stream/distributedlog/core/src/main/java/org/apache/distributedlog/impl/ZKLogSegmentMetadataStore.java ZKLogSegmentMetadataStore.java,"org.apache.distributedlog.impl.ZKLogSegmentMetadataStore.notifyLogStreamDeleted(java.lang.String,java.util.Map) org.apache.distributedlog.impl.ZKLogSegmentMetadataStore.notifyLogSegmentsUpdated(java.lang.String,java.util.Map,org.apache.bookkeeper.versioning.Versioned) org.apache.distributedlog.impl.",
+https://github.com/apache/incubator-dolphinscheduler/issues/1720,memory,1.0,"Fix bug: NullPointerException etc. (#1721)
+
+* #1720 Fix bug: NullPointerException etc.
+
+* fix code smell
+
+* Update DateInterval.java
+
+refactor equals method
+
+Co-authored-by: dailidong <dailidong66@gmail.com>
+",dolphinscheduler-alert/src/main/java/org/apache/dolphinscheduler/alert/runner/AlertSender.java dolphinscheduler-api/src/main/java/org/apache/dolphinscheduler/api/service/ExecutorService.java dolphinscheduler-common/src/main/java/org/apache/dolphinscheduler/common/model/DateInterval.java dolphinsched,"org.apache.dolphinscheduler.alert.runner.AlertSender.run() org.apache.dolphinscheduler.api.service.ExecutorService.createCommand(org.apache.dolphinscheduler.api.service.CommandType,int,org.apache.dolphinscheduler.api.service.TaskDependType,org.apache.dolphinscheduler.api.service.FailureStrategy,java",
+https://github.com/apache/bookkeeper/issues/2279,memory,1.0,"2279 fix NPE when exec readjournal command
+
+Descriptions of the changes in this PR:
+This PR fix NullPointerException when exec readjournal command
+See issue #2279 
+
+
+Reviewers: Enrico Olivelli <eolivelli@gmail.com>, Sijie Guo <None>
+
+This closes #2280 from aloyszhang/read-jounral
+
+(cherry picked ",bookkeeper-server/src/main/java/org/apache/bookkeeper/bookie/BookieShell.java BookieShell.java bookkeeper-server/src/main/java/org/apache/bookkeeper/bookie/BookieShell.java BookieShell.java,org.apache.bookkeeper.bookie.BookieShell.ReadJournalCmd org.apache.bookkeeper.bookie.BookieShell.ReadJournalCmd,
+https://github.com/apache/druid/issues/9286,concurrency,1.0,"Use ExecutorService instead of ScheduledExecutorService where necessary (#9325)
+
+* Use ExecutorService instead of ScheduledExecutorService where necessary - #9286
+
+* Added inspection rule to prohibit ScheduledExecutorService assignment to ExecutorService
+",sql/src/main/java/org/apache/druid/sql/calcite/schema/DruidSchema.java .idea/inspectionProfiles/Druid.xml extensions-core/druid-basic-security/src/main/java/org/apache/druid/security/basic/CommonCacheNotifier.java CommonCacheNotifier.java DruidSchema.java,org.apache.druid.security.basic.CommonCacheNotifier org.apache.druid.sql.calcite.schema.DruidSchema,
+https://github.com/apache/incubator-dolphinscheduler/issues/948,memory,1.0,"Fix alert server NullPointerException (#948) (#953)
+
+```
+AlertServer.getInstance(alertDao)
+```
+alertDao param solved this",escheduler-alert/src/main/java/cn/escheduler/alert/AlertServer.java escheduler-api/src/main/java/cn/escheduler/api/CombinedApplicationServer.java AlertServer.java CombinedApplicationServer.java,cn.escheduler.alert.AlertServer.getInstance() cn.escheduler.alert.AlertServer cn.escheduler.alert.AlertServer.getInstance(cn.escheduler.dao.AlertDao) cn.escheduler.alert.AlertServer.run(java.lang.String[]) cn.escheduler.api.CombinedApplicationServer.main(java.lang.String[]),
+https://github.com/apache/pulsar/issues/6482,memory,1.0,"Fix memory leak when running topic compaction. (#6485)
+
+
+Fixes #6482
+
+### Motivation
+Prevent topic compaction from leaking direct memory
+
+### Modifications
+
+Several leaks were discovered using Netty leak detection and code review.
+* `CompactedTopicImpl.readOneMessageId` would get an `Enumer",pulsar-broker/src/main/java/org/apache/pulsar/client/impl/RawBatchConverter.java pulsar-broker/src/main/java/org/apache/pulsar/compaction/CompactedTopicImpl.java pulsar-broker/src/main/java/org/apache/pulsar/compaction/TwoPhaseCompactor.java pulsar-broker/src/test/java/org/apache/pulsar/client/impl/,"org.apache.pulsar.client.impl.RawBatchConverter.rebatchMessage(org.apache.pulsar.client.api.RawMessage,java.util.function.BiPredicate) org.apache.pulsar.compaction.CompactedTopicImpl.readOneMessageId(org.apache.bookkeeper.client.LedgerHandle,long) org.apache.pulsar.compaction.TwoPhaseCompactor.phase",
+https://github.com/apache/druid/issues/6028,concurrency,1.0,"Synchronize scheduled poll() calls in SQLMetadataSegmentManager (#6041) (#6056)
+
+Similar issue to https://github.com/apache/incubator-druid/issues/6028. Synchronize scheduled poll() calls in SQLMetadataSegmentManager (#6041)
+
+Similar issue to https://github.com/apache/incubator-druid/issues/6028.",server/src/main/java/io/druid/metadata/SQLMetadataRuleManager.java server/src/main/java/io/druid/metadata/SQLMetadataSegmentManager.java server/src/test/java/io/druid/metadata/SQLMetadataSegmentManagerTest.java SQLMetadataSegmentManager.java SQLMetadataRuleManager.java SQLMetadataSegmentManagerTest.,io.druid.metadata.SQLMetadataSegmentManager io.druid.metadata.SQLMetadataSegmentManager.poll() io.druid.metadata.SQLMetadataSegmentManager.isStarted() io.druid.metadata.SQLMetadataSegmentManager.stop() io.druid.metadata.SQLMetadataSegmentManager.start() io.druid.metadata.SQLMetadataSegmentManager.st,
+https://github.com/apache/pulsar/issues/6561,memory,1.0,"Fix NPE while call getLastMessageId. (#6562)
+
+### Motivation
+
+Fixes #6561
+
+### Modifications
+
+Initialize `BatchMessageAckerDisabled` with a `new BitSet()` Object. Fix NPE while call getLastMessageId. (#6562)
+
+### Motivation
+
+Fixes #6561
+
+### Modifications
+
+Initialize `BatchMessageAckerDi",pulsar-client/src/main/java/org/apache/pulsar/client/impl/BatchMessageAcker.java pulsar-client/src/main/java/org/apache/pulsar/client/impl/BatchMessageAckerDisabled.java pulsar-client/src/test/java/org/apache/pulsar/client/impl/BatchMessageIdImplTest.java BatchMessageAcker.java BatchMessageAckerDisa,org.apache.pulsar.client.impl.BatchMessageAcker org.apache.pulsar.client.impl.BatchMessageAckerDisabled org.apache.pulsar.client.impl.BatchMessageIdImplTest.deserializationTest() org.apache.pulsar.client.impl.BatchMessageAcker org.apache.pulsar.client.impl.BatchMessageAckerDisabled org.apache.pulsar,
+https://github.com/apache/bookkeeper/issues/1487,memory,1.0,"[BOOKIE] [DBLEDGERSTORAGE] fix illegal reference count exception on filling read cache
+
+Descriptions of the changes in this PR:
+
+*Problem*
+
+ByteBuf is released at a finally block. DbLedgerStorage doesn't have to release it on return. If it does so, that will cause
+double-release and it will throw Il",bookkeeper-server/src/main/java/org/apache/bookkeeper/bookie/storage/ldb/SingleDirectoryDbLedgerStorage.java SingleDirectoryDbLedgerStorage.java bookkeeper-server/src/main/java/org/apache/bookkeeper/bookie/storage/ldb/SingleDirectoryDbLedgerStorage.java SingleDirectoryDbLedgerStorage.java,"org.apache.bookkeeper.bookie.storage.ldb.SingleDirectoryDbLedgerStorage.fillReadAheadCache(long,long,long) org.apache.bookkeeper.bookie.storage.ldb.SingleDirectoryDbLedgerStorage.fillReadAheadCache(long,long,long)",
+https://github.com/apache/pulsar/issues/7046,memory,1.0,"fix NullPointerException with SubscriptionMode.NonDurable (#7118)
+
+Fixes #7046
+
+
+### Motivation
+
+This code is to enable non-persistent subscriptions to continue to consume， based on the Id of the first message in the client's ReceiverQueue when reconnection is triggered.
+
+But it's not conside",pulsar-broker/src/test/java/org/apache/pulsar/client/api/NonDurableSubscriptionTest.java pulsar-client/src/main/java/org/apache/pulsar/client/impl/ConsumerImpl.java NonDurableSubscriptionTest.java ConsumerImpl.java,org.apache.pulsar.client.api.NonDurableSubscriptionTest org.apache.pulsar.client.impl.ConsumerImpl.connectionOpened(org.apache.pulsar.client.impl.ClientCnx),
+https://github.com/apache/pulsar/issues/33,concurrency,1.0,"Synchronized producer cleanup during close operation (#34)
+
+Fixes #33: Intermittent test failure on BacklogQuotaManagerTest.testAheadProducerOnHoldTimeout",pulsar-client/src/main/java/com/yahoo/pulsar/client/impl/ProducerImpl.java ProducerImpl.java,com.yahoo.pulsar.client.impl.ProducerImpl.closeAsync(),
+https://github.com/apache/bookkeeper/issues/1610,memory,1.0,"Issue #1610: netty leak detector logs 'LEAK: HashedWheelTimer.release() was not called before it's garbage-collected.' in unit tests
+
+Descriptions of the changes in this PR:
+
+Enabled netty's paranoid leak detection for tests.
+Fixed most of the 'LEAK: HashedWheelTimer.release() was not called before ",bookkeeper-server/src/main/java/org/apache/bookkeeper/proto/BookieServer.java bookkeeper-server/src/main/java/org/apache/bookkeeper/replication/Auditor.java bookkeeper-server/src/test/java/org/apache/bookkeeper/client/TestBookieWatcher.java bookkeeper-server/src/main/java/org/apache/bookkeeper/proto,,
+https://github.com/bazelbuild/bazel/issues/6814,concurrency,1.0,"Fix aapt2 with mobile-install v1
+
+Previously, the resource apk was always built with aapt regardless of configuration. This threads the aapt version into the resource processing action builder.
+
+Fixes: https://github.com/bazelbuild/bazel/issues/5799
+
+Ref: https://github.com/bazelbuild/bazel/issues/6",src/main/java/com/google/devtools/build/lib/rules/android/ProcessedAndroidData.java ProcessedAndroidData.java src/tools/android/java/com/google/devtools/build/android/incrementaldeployment/StubApplication.java StubApplication.java CHANGELOG.md tools/android/incremental_install.py,"com.google.devtools.build.lib.rules.android.ProcessedAndroidData.processIncrementalBinaryDataFrom(com.google.devtools.build.lib.analysis.RuleContext,com.google.devtools.build.lib.rules.android.AndroidDataContext,com.google.devtools.build.lib.rules.android.StampedAndroidManifest,com.google.devtools.b",
+https://github.com/antlr/antlr4/issues/959,memory,1.0,"Fixed non-informative NullPointerException. Empty strings now not allowed. fixed #959.
+",tool/src/org/antlr/v4/semantics/BasicSemanticChecks.java tool-testsuite/test/org/antlr/v4/test/tool/TestToolSyntaxErrors.java tool/src/org/antlr/v4/tool/ErrorType.java TestToolSyntaxErrors.java BasicSemanticChecks.java ErrorType.java,org.antlr.v4.test.tool.TestToolSyntaxErrors.testNotAllowedEmptyStrings() org.antlr.v4.semantics.BasicSemanticChecks.enterTerminal(org.antlr.v4.tool.ast.GrammarAST) org.antlr.v4.tool.ErrorType,
+https://github.com/apache/pulsar/issues/4707,concurrency,1.0,"Fix：PulsarKafkaProducer is not thread safe (#4745)
+
+fix #4707 
+
+ Fix：PulsarKafkaProducer is not thread safe (#4745)
+
+fix #4707
+
+(cherry picked from commit 0362944f6f7d610dd5b54d3724958e0bb9cb7abc)
+",pulsar-client-kafka-compat/pulsar-client-kafka/src/main/java/org/apache/kafka/clients/producer/PulsarKafkaProducer.java tests/pulsar-kafka-compat-client-test/src/test/java/org/apache/pulsar/tests/integration/compat/kafka/PulsarKafkaProducerThreadSafeTest.java PulsarKafkaProducer.java PulsarKafkaProd,org.apache.kafka.clients.producer.PulsarKafkaProducer.createNewProducer(java.lang.String) org.apache.pulsar.tests.integration.compat.kafka.PulsarKafkaProducerThreadSafeTest org.apache.kafka.clients.producer.PulsarKafkaProducer.createNewProducer(java.lang.String) org.apache.pulsar.tests.integration.c,
+https://github.com/AsyncHttpClient/async-http-client/issues/463,concurrency,1.0," Revert race condition introduced in #420, close #463
+",src/main/java/com/ning/http/client/providers/netty/NettyAsyncHttpProvider.java NettyAsyncHttpProvider.java,,
+https://github.com/apache/druid/issues/3007,memory,1.0,"Fixed NPE when dimension is null or empty. https://github.com/druid-io/druid/issues/3007 (#5299)
+
+",api/src/main/java/io/druid/data/input/impl/DimensionSchema.java processing/src/main/java/io/druid/segment/IndexIO.java processing/src/test/java/io/druid/segment/IndexMergerTestBase.java processing/src/main/java/io/druid/segment/incremental/IncrementalIndex.java DimensionSchema.java IndexIO.java Inde,"io.druid.data.input.impl.DimensionSchema io.druid.segment.IndexIO.V9IndexLoader.load(java.io.File,com.fasterxml.jackson.databind.ObjectMapper) io.druid.segment.IndexMergerTestBase.testDimensionWithEmptyName() io.druid.segment.incremental.IncrementalIndex.toTimeAndDims(io.druid.data.input.InputRow)",
+https://github.com/apache/pulsar/issues/5626,memory,1.0,"Fixes #5626 (#5627)
+
+If `killAfterIdleMs` is 0, time.After() function call makes memory leak.
+Refer to https://golang.org/pkg/time/#After. According to the document,
+the underlying Timer object is not recovered by the garbage collector if
+the timer is not fired. And It seems that if the duration ",pulsar-function-go/pf/instance.go,,
