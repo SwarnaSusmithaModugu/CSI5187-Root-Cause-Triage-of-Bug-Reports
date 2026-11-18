@@ -1,5 +1,7 @@
 """RQ3 classical methods with normal and keyword-masked inputs."""
 
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 from sklearn.dummy import DummyClassifier
@@ -17,6 +19,7 @@ from src.stats import holm, mcnemar_test, paired_bootstrap
 
 SEED = 42
 LABELS = ["concurrency", "memory", "semantic"]
+RESULTS_DIR = Path("results/rq3/tables")
 
 
 def text(data, regex=None):
@@ -92,8 +95,9 @@ def run(data, regex, tag):
         )
     _, adjusted = holm(pvalues)
     print(f"[{tag}] Holm-adjusted p: {dict(zip(names, adjusted))}")
+    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     pd.DataFrame({**out_of_fold, "y": labels}).to_csv(
-        f"results/rq3_oof_{tag}.csv", index=False
+        RESULTS_DIR / f"rq3_oof_{tag}.csv", index=False
     )
     return out_of_fold
 

@@ -1,6 +1,7 @@
 """Nested grouped-CV hybrid text, keyword, and structure model."""
 
 import re
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -18,6 +19,7 @@ from src.stats import mcnemar_test
 
 SEED = 42
 LABELS = ["concurrency", "memory", "semantic"]
+RESULTS_DIR = Path("results/rq3/tables")
 CONC_KW = re.compile(
     r"(race|deadlock|synchroniz|concurren|lock|atomic|thread|volatile)",
     re.I,
@@ -124,8 +126,9 @@ def run(data, regex, masked, tag):
     )
     print(f"[{tag}] hybrid macro-F1={macro:.3f} per-class={per_class}")
     print(confusion_matrix(labels, predictions, labels=LABELS))
+    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     pd.DataFrame({"hybrid": predictions, "y": labels}).to_csv(
-        f"results/rq3_oof_hybrid_{tag}.csv", index=False
+        RESULTS_DIR / f"rq3_oof_hybrid_{tag}.csv", index=False
     )
     return predictions
 
@@ -146,7 +149,7 @@ def main():
     normal = run(data, None, False, "normal")
     run(data, regex, True, "masked")
 
-    plain = pd.read_csv("results/rq3_oof_normal.csv")
+    plain = pd.read_csv(RESULTS_DIR / "rq3_oof_normal.csv")
     result = mcnemar_test(
         normal == plain["y"].values,
         plain["svm"].values == plain["y"].values,

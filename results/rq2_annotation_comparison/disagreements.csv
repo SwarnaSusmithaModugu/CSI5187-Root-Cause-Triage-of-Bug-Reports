@@ -1,0 +1,12 @@
+url,human_a_sufficient,human_a_category,human_b_sufficient,human_b_category,gpt6_sufficient,gpt6_category,claude_haiku_5_5_sufficient,claude_haiku_5_5_category,human_a_vs_human_b_suff_diff,human_a_vs_human_b_category_diff,human_a_vs_gpt6_suff_diff,human_a_vs_gpt6_category_diff,human_a_vs_claude_haiku_5_5_suff_diff,human_a_vs_claude_haiku_5_5_category_diff,gpt6_vs_claude_haiku_5_5_suff_diff,gpt6_vs_claude_haiku_5_5_category_diff
+https://github.com/brettwooldridge/HikariCP/issues/206,1,memory,1,memory,0,none,1,memory,False,False,True,True,False,False,True,True
+https://github.com/checkstyle/checkstyle/issues/7458,1,memory,0,none,0,none,0,none,True,True,True,True,True,True,False,False
+https://github.com/elastic/elasticsearch/issues/1147,1,concurrency,1,concurrency,0,none,1,concurrency,False,False,True,True,False,False,True,True
+https://github.com/elastic/elasticsearch/issues/1167,1,memory,1,memory,1,semantic,1,memory,False,False,False,True,False,False,False,True
+https://github.com/elastic/elasticsearch/issues/934,1,semantic,1,semantic,0,none,1,semantic,False,False,True,True,False,False,True,True
+https://github.com/grpc/grpc-java/issues/6850,1,memory,1,memory,1,semantic,1,memory,False,False,False,True,False,False,False,True
+https://github.com/junit-team/junit5/issues/1578,1,memory,1,memory,0,none,1,memory,False,False,True,True,False,False,True,True
+https://github.com/netty/netty/issues/5553,1,memory,1,memory,1,semantic,1,memory,False,False,False,True,False,False,False,True
+https://github.com/netty/netty/issues/597,1,memory,1,memory,0,none,1,memory,False,False,True,True,False,False,True,True
+https://github.com/redisson/redisson/issues/1459,1,concurrency,1,concurrency,0,none,0,none,False,False,True,True,True,True,False,False
+https://github.com/spring-projects/spring-session/issues/81,0,none,1,semantic,0,none,0,none,True,True,False,False,False,False,False,False
