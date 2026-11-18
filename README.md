@@ -2,7 +2,51 @@
 
 ## How to reproduce
 
-Setup and reproduction steps will be documented after the dataset has been verified.
+Run these commands from the repository root in Windows PowerShell. The
+environment uses Python, pandas, NumPy, SciPy, scikit-learn,
+sentence-transformers, and the other packages pinned or listed in
+`requirements.txt`.
+
+```powershell
+py -3.13 -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+
+# Existing completed annotation inputs are required for RQ2.
+python src\rq2_reliability.py
+python src\rq2_eval.py
+python src\rq2_diagnostics.py
+python -m pytest -q tests
+```
+
+RQ2 inputs under `data/interim/` are `sufficiency_labels.csv` (201 human
+annotations), `pilot_A.csv` (independent Human B overlap), `pilot_B.csv`
+(GPT-6), and `pilot_C.csv` (Claude Haiku 5.5). The annotation sheet builder is
+only for creating a new blank sheet; do not rerun it over completed labels.
+
+RQ2 uses seed 42, five project-grouped outer folds, and the frozen
+`all-MiniLM-L6-v2` encoder with title plus cleaned description only. The
+archived issue text has not been verified as a filing-time snapshot. The
+dataset contains 369 gold reports across 61 projects; the 201-report
+annotation sample spans 47 projects and is stratified by root-cause class.
+
+Expected RQ2 outputs include `results/rq2_oof.csv`,
+`results/rq2_evaluation_subset.csv`,
+`results/rq2_diagnostic_summary.csv`,
+`results/rq2_embedding_truncation_audit_corrected.csv`, and the other
+diagnostic CSVs documented in [`docs/RQ2_RESULTS.md`](docs/RQ2_RESULTS.md).
+
+RQ3 completed classical and nested hybrid OOF outputs are organized under
+`results/rq3/tables/`. Reproduce them with:
+
+```powershell
+.venv\Scripts\python.exe src\rq3_classical.py
+.venv\Scripts\python.exe src\rq3_hybrid.py
+```
+
+See [`docs/RQ3_RESULTS.md`](docs/RQ3_RESULTS.md) for the verified tables,
+input boundaries, and pending SetFit/zero-shot LLM comparisons. No RQ3 figures
+are currently archived.
 
 # Overview
 
@@ -53,7 +97,8 @@ The project is organized around four research questions:
 
 - **RQ1:** Field ablation experiments, including leave-one-out and leave-one-in analysis.
 - **RQ2:** Sufficiency annotation, classification, confidence calibration, and selective prediction.
-- **RQ3:** Comparison of TF-IDF with Linear SVM, SetFit, and an open-weight large language model.
+- **RQ3:** Comparison of completed TF-IDF/classical and hybrid models, with
+	SetFit and zero-shot LLM comparisons planned but not yet available.
 - **RQ4:** Identification and evaluation of decisive diagnostic evidence, citation faithfulness, and counterfactual information restoration.
 
 # Team

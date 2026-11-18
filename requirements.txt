@@ -7,3 +7,4 @@ requests
 matplotlib
 pytest
 python-dotenv
+sentence-transformers
