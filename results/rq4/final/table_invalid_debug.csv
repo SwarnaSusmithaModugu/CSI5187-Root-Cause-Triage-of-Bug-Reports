@@ -1,0 +1,2 @@
+condition,status,n_reports,macro_f1_debug_only,accuracy_debug_only,prediction_identity,reason
+B5_v1_target_reference,ARCHIVE - EXCLUDE FROM VALID POLICY COMPARISONS,295,0.5891199202193966,0.5864406779661017,295/295 predictions identical to B2,V2 source constructs B5 from the same shortest-unit ID as B2; it does not reproduce the v1 hidden-content selector.

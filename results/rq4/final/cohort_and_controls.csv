@@ -1,0 +1,28 @@
+measure,value,unit
+eligible_reports,295,reports
+eligible_projects,58,projects
+test_folds,5,folds
+B3_matchable,252,reports
+B3_no_reveal_fallback,43,reports
+B3_successful_match_type_description,252,reports
+B3_abs_length_delta_median,30.5,characters
+B3_abs_length_delta_q1,10.0,characters
+B3_abs_length_delta_q3,80.75,characters
+B3_abs_length_delta_max,1912.0,characters
+no_comments_unit_rows,2105,units
+overlap_flagged_units,368,units
+reports_with_overlap_flags,146,reports
+comments_in_primary_inference_candidates,0,units; excluded by source
+comments_model_rows_in_broad_audit,170,units (must be zero in inference; broader audit contains comments)
+description_snapshot,archived; filing-time exactness unverified,temporal status
+code_stack_provenance,extracted from description; overlap possible,source status
+metadata_visibility,candidate type/index/count/length derived from complete archived report,limitation
+cohort_class_concurrency,98,reports
+cohort_class_memory,98,reports
+cohort_class_semantic,99,reports
+unit_type_description,1846,units
+unit_type_code_text,143,units
+unit_type_stack_text,116,units
+overlap_flagged_type_description,292,units
+overlap_flagged_type_stack_text,43,units
+overlap_flagged_type_code_text,33,units

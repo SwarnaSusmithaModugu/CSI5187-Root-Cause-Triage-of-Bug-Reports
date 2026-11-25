@@ -1,0 +1,33 @@
+{
+  "experiment_id": "rq4_final_report_v1",
+  "git_revision": "dcf9a752116317161d90992046e8134d25c7877f",
+  "report_script": "scripts/rq4_finalize_report.py",
+  "report_script_sha256": "3aa00cd89f149f5620a365235a3eecd515506bbeeb2c035e7ba1634f2904f9f3",
+  "artifact_register": "docs/rq4/RQ4_ARTIFACT_REGISTER.md",
+  "registered_file_hashes_verified": 28,
+  "input_sha256": {
+    "data/processed/gold_v1.csv": "5ae3365e515e22ceb986859cb84c65a2b1d376872bd11a804033eeebf505da8e",
+    "results/rq4/v2/reveal_predictions.csv": "a5a9ef241959250dbf2420b565c0efac3dc8678f4005ba0fc1e1ca305743ee47",
+    "results/rq4/v2/metrics.csv": "37a2c02f2d5a9f0615f7e54f372ef0751462ceff2ac570939abccbfdb3bc5052",
+    "results/rq4/v2/fold_map.csv": "4dbd585a64b239d8702f31590fef2c48a611781704590b9a76f36abdb7cb4da3",
+    "results/rq4/v2/control_match_audit.csv": "c4863dc429ad7ae74f6d54522cfcfdcd9ae7aa2fbde2701645365c71b96b694b",
+    "results/rq4/v2/paired_differences.csv": "a2ef0c131db84460c67bd0da6fe406b857ec4fca8f3e11ba73d08b0f98dae221",
+    "results/rq4/v2/bootstrap_ci.csv": "fea1681779b0e5e0d4ca0e72baee12dbdaee1c747a158f4ad09afacb089b69ff",
+    "results/rq4/v2/unit_audit.csv": "04f320fa7f70897a6bc07cff19900d49e383029ab8a64015a62c0de350b8f29c",
+    "results/rq4/v2/unit_manifest_v2.csv": "c29560d7f721dfbcee542b4d87e1b45bed28a9f54caccb4bf91f10ab21aeb574"
+  },
+  "cohort": {
+    "reports": 295,
+    "projects": 58,
+    "folds": 5
+  },
+  "metrics_recomputed_from": "results/rq4/v2/reveal_predictions.csv",
+  "bootstrap": {
+    "source": "results/rq4/v2/bootstrap_ci.csv",
+    "recomputed": false,
+    "resamples": 5000,
+    "method": "paired project-cluster bootstrap"
+  },
+  "report_cleanup_training_or_selector_runs": false,
+  "historical_v1_v2_inputs_modified": false
+}
