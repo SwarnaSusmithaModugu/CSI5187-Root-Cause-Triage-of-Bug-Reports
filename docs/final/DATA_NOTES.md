@@ -186,7 +186,7 @@ These are report-vocabulary terms, not the C/M selection keywords.
 
 ## 5. RQ3 classical and hybrid
 
-The detailed RQ3 report is [`docs/RQ3_RESULTS.md`](RQ3_RESULTS.md). The four
+The detailed RQ3 report is [RQ3_RESULTS.md](RQ3_RESULTS.md). The four
 saved OOF tables are organized under `results/rq3/tables/`; their schemas and
 369-row contents are unchanged. SetFit and zero-shot LLM comparisons are not
 present in this repository and remain pending.
@@ -358,4 +358,60 @@ finding is that human-insufficient reports had a higher observed error rate,
 while predicted sufficiency ranked correctness worse than confidence and the
 confidence-times-sufficiency policy did not improve the primary AURC result.
 This is an association, not a causal claim. Full results are in
-`docs/RQ2_RESULTS.md`.
+[RQ2_RESULTS.md](RQ2_RESULTS.md).
+
+## 10. Structural correction and RQ4 feasibility
+
+The archived hybrid implementation used nonexistent
+`description_has_stack`/`description_has_code` columns and therefore supplied
+all-zero values for those intended features. Gold has nonconstant `has_stack`
+and `has_code` fields derived from the cleaned description. A separate
+`rq3_hybrid_structural_corrected_v1` runner was evaluated and saved under
+`results/rq3/tables/` without changing any archived RQ3 files.
+
+SetFit and zero-shot LLM remain blocked/not started, and ECCR is not started.
+
+## 11. RQ4 cohort and information boundaries
+
+The frozen master dataset is `data/processed/gold_v1.csv`: 369 labeled bug
+reports across concurrency, memory, and semantic root-cause classes. Not every
+report is eligible for every analysis.
+
+The original RQ4 v1 feasibility screen identified 311 reports across 59
+projects under the original unit criteria. It included candidate
+`comments_model` units and is a preliminary feasibility screen, not the
+primary RQ4 evaluation. The audited v2 evaluation uses 295 reports across 58
+projects after excluding `comments_model` and recomputing eligibility over
+description, code, and stack units. This is the same frozen master dataset,
+not a newly sampled or independent dataset.
+
+The archived `description_clean` text is not verified as the exact
+filing-time snapshot and may have been edited after filing. `comments_model`
+is excluded from primary RQ4 because a cutoff before fix authorship or closure
+does not establish that a comment was available at filing. This RQ4 exclusion
+does not mean comments are absent from every other RQ: RQ1's normal full-field
+setting uses title, cleaned description, and leak-masked comments; RQ2 uses
+title and cleaned description only; RQ3's normal setting uses title, cleaned
+description, and leak-masked comments, while its masked setting additionally
+masks selected keyword shortcuts.
+
+RQ4 candidate units are description paragraphs plus `code_text` and
+`stack_text`, which are derived from original descriptions rather than
+independent new sources. Some excerpts overlap with description text, and
+exact source offsets are not always reconstructible. Containment/overlap flags
+do not prove independent diagnostic evidence.
+
+The v2 selectors do not use held-out unit text, embeddings, labels, errors, or
+margins to choose a unit. However, unit existence, source type, position/count,
+and character length are extracted retrospectively from the complete archived
+report. This is metadata-visible synthetic information restoration, not a
+deployable real-time acquisition policy or a tested clarification agent.
+Evaluation uses five project-grouped folds on the 295-report RQ4 cohort; this
+fold mapping is not the canonical 369-report RQ3 fold mapping.
+
+The qualified retrospective result has an observed B3-minus-B0 macro-F1
+difference of +0.009812, with paired project-cluster 95% CI
+[-0.036973, +0.049015], spanning zero. B3 matched 252 description units and
+fell back to B0 for 43 reports. See the [source audit](RQ4_V2_SOURCE_AUDIT.md),
+[artifact register](../rq4/RQ4_ARTIFACT_REGISTER.md), [final decision](FINAL_RQ4_DECISION.md),
+and [validation output](../../results/rq4/final/validation.json).

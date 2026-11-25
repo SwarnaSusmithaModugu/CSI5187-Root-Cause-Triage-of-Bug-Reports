@@ -1,0 +1,2 @@
+comparison,macro_f1_ci_low,macro_f1_ci_high,accuracy_ci_low,accuracy_ci_high,resamples,method
+B3_same_type_control_minus_B0,-0.03697267297835351,0.04901527940373057,-0.03211091087811263,0.053628062414639154,5000,paired project-cluster bootstrap

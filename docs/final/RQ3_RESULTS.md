@@ -58,12 +58,48 @@ scripts were path-checked without rerunning the expensive model experiments.
 No RQ3 figures are currently present; figure directories should be created
 only when a reproducible figure source is added.
 
+## Structural-feature correction audit
+
+The public hybrid runner reads nonexistent `description_has_stack` and
+`description_has_code` columns and silently backfilled zero values. The frozen
+gold instead contains `has_stack` and `has_code`, both derived from
+description text by `src/clean.py` and both nonconstant:
+135/369 reports have `has_stack=True` and 194/369 have `has_code=True`.
+The corrected implementation is
+`src/rq3_hybrid_structural_corrected.py`; it is run as a module:
+
+```powershell
+.venv\Scripts\python.exe -m src.rq3_hybrid_structural_corrected
+```
+
+It preserves the legacy five-fold, seed-42, nested-CV configuration and adds
+URL, project, fold, and experiment IDs to separate corrected outputs. The
+archived legacy files and scores remain unchanged.
+
+| Setting | Legacy macro-F1 | Corrected macro-F1 | Change | Changed predictions |
+| --- | ---: | ---: | ---: | ---: |
+| Normal | 0.769849 | 0.767437 | -0.002412 | 8 |
+| Masked | 0.700329 | 0.703271 | +0.002942 | 28 |
+
+The normal correction did not improve held-out performance. The masked
+correction slightly improved macro-F1, but the paired accuracy bootstrap
+interval includes zero in both settings and exact McNemar p-values were 1.0.
+The masked and normal feature policies remain different: masked evaluation
+removes explicit keyword/exception numeric features, so the masked difference
+cannot be attributed to text masking alone.
+
 ## Limitations and pending work
 
 These are project-grouped OOF estimates, not an untouched independent test.
 The normal setting includes comments after leakage masking, while the masked
 setting removes the selected keyword shortcuts; comparisons must retain those
 information boundaries. The keyword-selected gold sample and shortcut baseline
-limit generalization. SetFit and zero-shot LLM comparisons are not available
-in this repository and must not be inferred from the classical or hybrid
-results.
+limit generalization.
+
+SetFit: blocked/not started. The local environment is Python 3.13.7 with
+PyTorch 2.15.0 CPU-only and no `setfit` package installed. No SetFit
+predictions or scores were fabricated.
+
+Zero-shot LLM: not started. No publicly available instruction-tuned checkpoint
+was downloaded or executed, and no prompt, model revision, parse-failure
+statistics, or LLM predictions are claimed.

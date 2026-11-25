@@ -1,0 +1,9 @@
+{
+  "experiment_id": "rq4_v2_audit_baselines",
+  "seed": 42,
+  "dataset_sha256": "5ae3365e515e22ceb986859cb84c65a2b1d376872bd11a804033eeebf505da8e",
+  "fold_map_sha256": "8fe391d5f558acae3112f64ff957e479353aa79c531cd46cb7d8c68433961c1a",
+  "cohort": "eligible description/code/stack units; comments excluded",
+  "eligible_reports": 295,
+  "eligible_projects": 58
+}

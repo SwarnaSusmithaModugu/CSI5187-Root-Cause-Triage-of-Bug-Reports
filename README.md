@@ -1,5 +1,12 @@
 # Evidence-Grounded, Calibrated, Selective Root-Cause Triage of Bug Reports
 
+## Current documentation
+
+- [Data notes](docs/final/DATA_NOTES.md) · [RQ2 results](docs/final/RQ2_RESULTS.md) · [RQ3 results](docs/final/RQ3_RESULTS.md)
+- [RQ4 guide and final links](docs/final/RQ4_README.md) · [RQ4 primary table](results/rq4/final/table_primary.csv)
+
+Historical feasibility notes and superseded drafts are under `docs/archive/`.
+
 ## How to reproduce
 
 Run these commands from the repository root in Windows PowerShell. The
@@ -34,7 +41,8 @@ Expected RQ2 outputs include `results/rq2_oof.csv`,
 `results/rq2_evaluation_subset.csv`,
 `results/rq2_diagnostic_summary.csv`,
 `results/rq2_embedding_truncation_audit_corrected.csv`, and the other
-diagnostic CSVs documented in [`docs/RQ2_RESULTS.md`](docs/RQ2_RESULTS.md).
+diagnostic CSVs documented in
+[`docs/final/RQ2_RESULTS.md`](docs/final/RQ2_RESULTS.md).
 
 RQ3 completed classical and nested hybrid OOF outputs are organized under
 `results/rq3/tables/`. Reproduce them with:
@@ -44,9 +52,19 @@ RQ3 completed classical and nested hybrid OOF outputs are organized under
 .venv\Scripts\python.exe src\rq3_hybrid.py
 ```
 
-See [`docs/RQ3_RESULTS.md`](docs/RQ3_RESULTS.md) for the verified tables,
+See [`docs/final/RQ3_RESULTS.md`](docs/final/RQ3_RESULTS.md) for the verified tables,
 input boundaries, and pending SetFit/zero-shot LLM comparisons. No RQ3 figures
 are currently archived.
+
+## RQ4 frozen result
+
+RQ4 is **FROZEN — QUALIFIED RETROSPECTIVE RESULT**. The audited comparison
+does not establish a beneficial policy or deployable clarification agent.
+Start with the [RQ4 README](docs/final/RQ4_README.md) and its
+[four-row primary table](results/rq4/final/table_primary.csv). Reproduce only
+the derived report with
+`.venv\Scripts\python.exe scripts\rq4_finalize_report.py`; this does not
+retrain models or rerun selectors.
 
 # Overview
 

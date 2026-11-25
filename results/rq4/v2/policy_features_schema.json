@@ -1,0 +1,21 @@
+{
+  "visible_features": [
+    "visible_report_tfidf_or_embedding",
+    "visible_report_character_length",
+    "candidate_type",
+    "candidate_index",
+    "candidate_count",
+    "candidate_count_by_type",
+    "legitimate_length_bucket"
+  ],
+  "excluded_features": [
+    "candidate_hidden_text",
+    "candidate_text_embedding",
+    "candidate_keywords",
+    "restored_output",
+    "gold_label",
+    "test_correctness",
+    "target_or_control_outcomes",
+    "fix_derived_metadata"
+  ]
+}

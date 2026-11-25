@@ -1,0 +1,3 @@
+condition,role,cohort,n_reports,projects,macro_f1,accuracy,delta_macro_f1_vs_b0,limitation
+B0_no_reveal,Descriptive matched-subset baseline,252 B3-matchable reports only,252,51,0.5827556732015331,0.5833333333333334,,Descriptive only; different cohort; not comparable to 295-report absolute scores.
+B3_same_type_control,Descriptive matched-subset control,252 B3-matchable reports only,252,51,0.5946017777213747,0.5992063492063492,0.011846104519841583,Descriptive only; different cohort; not comparable to 295-report absolute scores; not a new confirmatory comparison.

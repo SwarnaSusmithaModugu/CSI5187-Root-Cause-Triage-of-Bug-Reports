@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "condition_count": 16,
+  "prediction_rows": 4720,
+  "reports_per_condition": 295,
+  "reports": 295,
+  "projects": 58,
+  "folds": 5,
+  "B3_matches": 252,
+  "B3_fallbacks": 43,
+  "B2_B5_identical_predictions": 295,
+  "paired_B3_beneficial": 25,
+  "paired_B3_harmful": 21,
+  "paired_B3_unchanged": 249,
+  "primary_table_rows": 4,
+  "primary_table_conditions": [
+    "B0_no_reveal",
+    "B3_same_type_control",
+    "B1_random_10_seed_summary",
+    "REF_all_units"
+  ],
+  "matchable_subset_table_rows": 2,
+  "matchable_subset_reports": 252,
+  "register_hashes_verified": 28,
+  "training_performed": false
+}
